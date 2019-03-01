@@ -11,7 +11,9 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="server_client_id">774321060687-9j0i5ge8vood8n6mp8b4pnphtmr8es6u.apps.googleusercontent.com</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="qrcode">QRCode</string>
+    <string name="title_wallet">Wallet</string>
+    <string name="title_activity_bottom_navigation">BottomNavigation</string>
 </resources>
