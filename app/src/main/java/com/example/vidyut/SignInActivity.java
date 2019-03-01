@@ -48,9 +48,9 @@ public class SignInActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<Home>();
         arrayList.add(new Home("Contests",R.drawable.contests));
-        arrayList.add(new Home("Workshops",R.drawable.work));
+        arrayList.add(new Home("Workshops",R.drawable.workshops));
         arrayList.add(new Home("Concerts",R.drawable.concerts));
-        arrayList.add(new Home("Ted-Talks",R.drawable.tedtalks));
+        arrayList.add(new Home("Talks",R.drawable.tedtalks));
         arrayList.add(new Home("Exhibition",R.drawable.exhibition));
         arrayList.add(new Home("Sponsers",R.drawable.sponsers));
 

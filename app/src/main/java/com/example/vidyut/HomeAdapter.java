@@ -1,8 +1,6 @@
 package com.example.vidyut;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeView> {
         this.home = home;
     }
 
-
     @Override
     public HomeView onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.home,parent,false);
@@ -32,6 +29,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeView> {
     @Override
     public void onBindViewHolder(HomeView holder, final int position) {
         holder.image.setImageResource(home.get(position).getImage());
+        holder.text3.setText(home.get(position).getName());
     }
 
     @Override
