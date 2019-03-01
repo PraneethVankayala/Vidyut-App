@@ -3,12 +3,11 @@ package com.example.vidyut;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -17,11 +16,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignInActivity extends AppCompatActivity {
     private static final String TAG = "hello";
     GoogleSignInClient mGoogleSignInClient;
     String token;
      private static final int RC_SIGN_IN = 0;
+    List<Home> arrayList;
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter<HomeView> madapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,22 @@ public class SignInActivity extends AppCompatActivity {
 
          mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerView= findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<Home>();
+        arrayList.add(new Home("Contests",R.drawable.contests));
+        arrayList.add(new Home("Workshops",R.drawable.work));
+        arrayList.add(new Home("Concerts",R.drawable.concerts));
+        arrayList.add(new Home("Ted-Talks",R.drawable.tedtalks));
+        arrayList.add(new Home("Exhibition",R.drawable.exhibition));
+        arrayList.add(new Home("Sponsers",R.drawable.sponsers));
+
+            madapter=new HomeAdapter(arrayList,this);
+            madapter.notifyDataSetChanged();
+            recyclerView.setAdapter(madapter);
     }
+
 
     @Override
     protected void onStart() {
