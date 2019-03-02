@@ -14,14 +14,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeView> {
 
     private Context context;
 
-    public HomeAdapter(List<Home> home,Context context){
-        this.context = context;
+    public HomeAdapter(List<Home> home){
         this.home = home;
     }
 
     @Override
     public HomeView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.home,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home,parent,false);
         HomeView h = new HomeView(view);
         return h;
     }
