@@ -8,11 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.example.vidyut.BottomNavigation.About;
 import com.example.vidyut.BottomNavigation.Dashboard;
 import com.example.vidyut.BottomNavigation.Home;
-
 import com.example.vidyut.BottomNavigation.QrCode;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
