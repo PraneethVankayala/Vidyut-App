@@ -23,6 +23,8 @@ public class Home extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter<HomeView> madapter;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +32,14 @@ public class Home extends Fragment {
         layoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView= view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(layoutManager);
+        data();
+        madapter=new HomeAdapter(arrayList);
+        recyclerView.setAdapter(madapter);
+        recyclerView.setNestedScrollingEnabled(false);
+        return view;
+    }
+
+    public List<com.example.vidyut.Home> data(){
         arrayList = new ArrayList<com.example.vidyut.Home>();
         arrayList.add(new com.example.vidyut.Home("Contests",R.drawable.contests));
         arrayList.add(new com.example.vidyut.Home("Workshops",R.drawable.workshops));
@@ -38,11 +48,7 @@ public class Home extends Fragment {
         arrayList.add(new com.example.vidyut.Home("Exhibition",R.drawable.exhibition));
         arrayList.add(new com.example.vidyut.Home("Sponsers",R.drawable.sponsers));
 
-        madapter=new HomeAdapter(arrayList);
-        recyclerView.setAdapter(madapter);
-        recyclerView.setNestedScrollingEnabled(false);
-        return view;
+        return arrayList;
     }
-
 
 }
