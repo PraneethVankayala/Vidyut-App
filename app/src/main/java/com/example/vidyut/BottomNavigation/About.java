@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 
 import com.example.vidyut.R;
 
-public class Wallet  extends Fragment {
+public class About extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_wallet,null);
+        return inflater.inflate(R.layout.fragment_about,null);
     }
 }
