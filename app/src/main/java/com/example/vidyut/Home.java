@@ -1,8 +1,5 @@
 package com.example.vidyut;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-
 public class Home {
 
     String name;

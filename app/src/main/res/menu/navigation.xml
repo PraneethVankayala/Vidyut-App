@@ -4,25 +4,25 @@
 <item
     android:id="@+id/navigation_home"
     android:title="@string/title_home"
-    android:icon="@drawable/ic_home_black_24dp"
+    android:icon="@drawable/ic_home"
     android:enabled="true"
     app:showAsAction="ifRoom"></item>
     <item
         android:id="@+id/navigation_dashboard"
         android:title="@string/title_dashboard"
         android:enabled="true"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_dashboard"
         app:showAsAction="ifRoom"></item>
     <item
         android:id="@+id/navigation_qrcode"
         android:title="@string/qrcode"
         android:enabled="true"
-        android:icon="@drawable/baseline_code_white_24dp"
+        android:icon="@drawable/ic_blackberry_qr_code_variant"
         app:showAsAction="ifRoom"></item>
     <item
-        android:id="@+id/navigation_wallet"
-        android:title="@string/title_wallet"
+        android:id="@+id/navigation_about"
+        android:title="@string/title_about"
         android:enabled="true"
-        android:icon="@drawable/wallet_24dp"
+        android:icon="@drawable/ic_icon"
         app:showAsAction="ifRoom"></item>
 </menu>

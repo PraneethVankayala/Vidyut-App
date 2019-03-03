@@ -8,12 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import com.example.vidyut.BottomNavigation.About;
 import com.example.vidyut.BottomNavigation.Dashboard;
 import com.example.vidyut.BottomNavigation.Home;
-
 import com.example.vidyut.BottomNavigation.QrCode;
-import com.example.vidyut.BottomNavigation.Wallet;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -109,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new QrCode();
                 break;
 
-            case R.id.navigation_wallet:
+            case R.id.navigation_about:
                 setTitle("Wallet");
-                fragment = new Wallet();
+                fragment = new About();
                 break;
         }
 
