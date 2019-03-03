@@ -11,7 +11,6 @@
     android:layout_width="190dp"
     android:layout_height="190dp"
     android:id="@+id/cardview"
-    app:cardCornerRadius="10dp"
     card_view:cardElevation="7dp"
     xmlns:card_view="http://schemas.android.com/tools"
     card_view:ignore="MissingConstraints">
