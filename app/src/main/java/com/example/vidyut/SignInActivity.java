@@ -92,6 +92,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.sign_in_button:
                 signIn();
+                break;
         }
 
     }
