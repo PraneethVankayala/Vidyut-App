@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     .replace(R.id.frame_container, fragment)
                     .commit();
             return true;
+
         }
         return false;
     }
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public void onComplete(@NonNull Task<Void> task) {
                 Intent intent=new Intent(MainActivity.this,SignInActivity.class);
                 startActivity(intent);
+
             }
         });
     }
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navigation_about:
-                setTitle("Wallet");
+                setTitle("About");
                 fragment = new About();
                 break;
         }
