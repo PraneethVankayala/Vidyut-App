@@ -1,6 +1,11 @@
 package com.example.vidyut;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +28,7 @@ public class ChildActivity extends AppCompatActivity {
     ApiManager apiManager = new ApiManager();
     TextView textView;
     RecyclerView recyclerView;
+    ProgressBar progressBar;
     List<Workshops> worksho=new ArrayList<>();
     List<Contests> contest=new ArrayList<Contests>();
     RecyclerView.LayoutManager layoutManager;
@@ -37,6 +44,14 @@ public class ChildActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter =  new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,dept);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+//        ActionBar ab = getSupportActionBar();
+//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
+//        ab.setBackgroundDrawable(colorDrawable);
+//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+//        upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        progressBar = findViewById(R.id.progressBar2);
         Bundle b = getIntent().getExtras();
         String name = b.getString("name");
         layoutManager=new LinearLayoutManager(this);
@@ -104,6 +119,7 @@ public class ChildActivity extends AppCompatActivity {
                 madapter = new ChildAdapter(worksho);
                 madapter.notifyDataSetChanged();
                 recyclerView.setAdapter(madapter);
+                progressBar.setVisibility(View.INVISIBLE);
                 super.onPostExecute(workshops);
             }
             else{
@@ -142,6 +158,7 @@ public class ChildActivity extends AppCompatActivity {
                 madapter = new ContestAdapter(contest);
                 madapter.notifyDataSetChanged();
                 recyclerView.setAdapter(madapter);
+                progressBar.setVisibility(View.INVISIBLE);
                 super.onPostExecute(workshops);
             }
             else{

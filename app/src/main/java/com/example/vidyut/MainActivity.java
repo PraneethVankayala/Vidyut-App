@@ -1,9 +1,14 @@
 package com.example.vidyut;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,12 +31,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        ActionBar ab = getSupportActionBar();
+//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
+//        ab.setBackgroundDrawable(colorDrawable);
+          getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+//        upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         Intent intent=getIntent();
-        Bundle b=intent.getExtras();
-        String s=b.getString("hello");
+//        Bundle b=intent.getExtras();
+//        String s=b.getString("hello");
         loadFragment(new Home());
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);

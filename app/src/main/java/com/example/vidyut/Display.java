@@ -3,13 +3,20 @@ package com.example.vidyut;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,13 +32,23 @@ public class Display extends AppCompatActivity {
 
     ApiManager apiManager = new ApiManager();
     int id;
-    TextView txtView1,txtView2,txtView3,txtView4,txtView5,txtView6,txtView7;
+    ProgressBar progressBar;
+    TextView txtView1,txtView2,txtView3,txtView4,txtView5,txtView6,txtView7,txtView8,txtView9,txtView10,txtView11,txtView12,txtView13,txtView14,txtView15;
+    View vi;
     ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+//        ActionBar ab = getSupportActionBar();
+//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
+//        ab.setBackgroundDrawable(colorDrawable);
+//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+//        upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        progressBar = findViewById(R.id.progressBar3);
         imageView=findViewById(R.id.displayimage);
         txtView1 = findViewById(R.id.name1);
         txtView2 = findViewById(R.id.dep);
@@ -39,7 +56,16 @@ public class Display extends AppCompatActivity {
         txtView4 = findViewById(R.id.shot);
         txtView5 = findViewById(R.id.rules);
         txtView6 = findViewById(R.id.prereq);
-        txtView7 = findViewById(R.id.seats);
+        txtView7 = findViewById(R.id.firstprize);
+        txtView8 = findViewById(R.id.about);
+        txtView9 = findViewById(R.id.secondprize);
+        txtView10 = findViewById(R.id.thirdprize);
+        txtView11 = findViewById(R.id.fee);
+        txtView12 = findViewById(R.id.date);
+        txtView13 = findViewById(R.id.fprize);
+        txtView14 = findViewById(R.id.secprize);
+        txtView15 = findViewById(R.id.thdprize);
+        vi = findViewById(R.id.divider2);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         id = bundle.getInt("id");
@@ -52,25 +78,45 @@ public class Display extends AppCompatActivity {
     }
 
     private void Display(Workshops workshop){
+        progressBar.setVisibility(View.GONE);
         txtView1.setText(workshop.getTitle());
         txtView2.setText(workshop.getDepartment());
         txtView3.setText(workshop.getVenue());
         txtView4.setText(workshop.getAbout());
         txtView5.setText(Html.fromHtml(workshop.getRules()));
         txtView6.setText(Html.fromHtml(workshop.getPrereq()));
-        txtView7.setText(workshop.getSeats());
+        txtView7.setVisibility(View.GONE);
+        txtView11.append(Integer.toString(workshop.getFee()));
+        txtView12.setText(workshop.getD1dur());
+        txtView9.setVisibility(View.GONE);
+        txtView10.setVisibility(View.GONE);
+        txtView13.setVisibility(View.GONE);
+        txtView14.setVisibility(View.GONE);
+        txtView15.setVisibility(View.GONE);
+        vi.findViewById(View.GONE);
+        txtView8.setText("About");
         String url="https://devhub.amblygon.org/static/images/workshops/"+workshop.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }
 
     private void Display2(Contests contests){
+        progressBar.setVisibility(View.GONE);
         txtView1.setText(contests.getTitle());
         txtView2.setText(contests.getDept());
         txtView3.setText(contests.getVenue());
         txtView4.setText(contests.getAbout());
         txtView5.setText(Html.fromHtml(contests.getRules()));
-        txtView6.setText(Html.fromHtml(contests.getPrereq()));
-        txtView7.setText(Integer.toString(contests.getP1()));
+        if(Html.fromHtml(contests.getPrereq()).equals("")){
+            txtView6.setVisibility(View.GONE);
+        }else{
+            txtView6.setText(Html.fromHtml(contests.getPrereq()));
+        }
+        txtView7.append(Integer.toString(contests.getP1()));
+        txtView8.setText("About");
+        txtView9.append(Integer.toString(contests.getP2()));
+        txtView10.append(Integer.toString(contests.getP3()));
+        txtView11.append(Integer.toString(contests.getFee()));
+        txtView12.setText(contests.getD1dur());
         String url="https://devhub.amblygon.org/static/images/contests/"+contests.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }
