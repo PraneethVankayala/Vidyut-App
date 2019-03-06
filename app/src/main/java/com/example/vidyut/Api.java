@@ -7,10 +7,11 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface Api {
 
-    String BASE_URL="https://devhub.amblygon.org";
+    String BASE_URL="https://hub.amblygon.org";
 
     @POST("farer/auth/user")
     Call<ResponseAuth>  createId(@Body AuthToken authToken);
@@ -26,4 +27,16 @@ public interface Api {
 
     @GET("addons/order/my")
     Call<List<MyOrder>> getorder(@Header("Authorization") String authorization);
+
+    @GET("events/workshops")
+    Call<List<Workshops>> getWorkshops();
+
+    @GET("events/contests")
+    Call<List<Contests>> getContests();
+
+    @GET("events/workshops/{Id}")
+    Call<Workshops> getWorkshopDetails(@Path("Id") int id);
+
+    @GET("events/contests/{Id}")
+    Call<Contests> getContestDetails(@Path("Id") int id);
 }

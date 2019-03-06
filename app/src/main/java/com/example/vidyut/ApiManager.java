@@ -41,4 +41,24 @@ public class ApiManager {
         return registrationCall;
     }
 
+    public Call getWorkshops(){
+        Call<List<Workshops>> registrationCall=service.getWorkshops();
+        return registrationCall;
+    }
+
+    public Call getContests(){
+        Call<List<Contests>> registrationCall=service.getContests();
+        return registrationCall;
+    }
+
+    public Call getWorkshopDetails(int wid){
+        Call<Workshops> workshop = service.getWorkshopDetails(wid);
+        return workshop;
+    }
+
+    public Call getContestDetails(int id){
+        Call<Contests> contest = service.getContestDetails(id);
+        return  contest;
+    }
+
 }

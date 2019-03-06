@@ -6,5 +6,6 @@
     <color name="app_bg">#000000</color>
     <color name="colorbg">#D32D2D</color>
     <color name="nav_drawer">#272727</color>
-
+    <color name="lightBlack">#645D5D</color>
+    <color name="white">#F7F3F3</color>
 </resources>

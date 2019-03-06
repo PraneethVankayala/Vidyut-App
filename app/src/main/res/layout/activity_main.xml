@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
+        app:labelVisibilityMode="labeled"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation"
         tools:ignore="MissingConstraints" />

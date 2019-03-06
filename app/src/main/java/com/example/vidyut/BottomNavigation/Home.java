@@ -1,23 +1,40 @@
 package com.example.vidyut.BottomNavigation;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.vidyut.HomeAdapter;
 import com.example.vidyut.HomeView;
+import com.example.vidyut.MainActivity;
 import com.example.vidyut.R;
+import com.example.vidyut.SignInActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Home extends Fragment {
 
     List<com.example.vidyut.Home> arrayList;
-
+    GoogleSignInClient mGoogleSignInClient;
+    GoogleSignInOptions gso;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter<HomeView> madapter;
@@ -48,5 +65,6 @@ public class Home extends Fragment {
 
         return arrayList;
     }
+
 
 }
