@@ -87,9 +87,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 String phno=user.getDatas().getPhno();
 
                 data=new Data(vid,email,fname,lname,pic,d,e,phno);
-                updateUI(GoogleSignInAccount);
-                if(data.isDetails() && data.isEdu()){
-                    updateUI(GoogleSignInAccount);
+
+               if(data.isDetails() && data.isEdu()){
+                   updateUI(GoogleSignInAccount);
                 }
                 else{
                     mGoogleSignInClient.signOut();
