@@ -40,7 +40,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="35dp"
                     android:textStyle="bold" />
@@ -61,9 +63,13 @@
 
                     <TextView
                         android:id="@+id/dep"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
+                        android:textColor="@color/colorPrimaryDark"
                         android:background="@drawable/newcolor"
                         tools:ignore="NotSibling" />
 
@@ -79,7 +85,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="Venue"
+                        android:id="@+id/ven"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
@@ -87,8 +95,9 @@
                         android:id="@+id/venue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:paddingBottom="10dp" />
+                        android:textColor="@color/colorPrimaryDark"
+                        android:paddingBottom="10dp"
+                        android:layout_marginLeft="110dp" />
 
                 </RelativeLayout>
 
@@ -102,16 +111,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="Fee"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/fee"
-                        android:text="@string/Rs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="110dp"
+                        android:text="@string/Rs" />
 
                 </RelativeLayout>
 
@@ -125,15 +137,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="Date"
+                        android:id="@+id/dt"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/date"
+                        android:lines="3"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
+                        android:layout_marginLeft="110dp" />
 
                 </RelativeLayout>
 
@@ -148,6 +164,7 @@
                     android:id="@+id/fprize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="1st Prize"
@@ -158,6 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/Rs"
                     android:textSize="30dp"
                     android:textStyle="bold" />
@@ -166,8 +184,9 @@
                     android:id="@+id/secprize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingBottom="10dp"
-                    android:text="2st Prize"
+                    android:text="2nd Prize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -175,6 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/Rs"
                     android:textSize="30dp"
                     android:textStyle="bold" />
@@ -184,7 +204,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
-                    android:text="3st Prize"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="3rd Prize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -192,6 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="@string/Rs"
                     android:textSize="30dp"
                     android:textStyle="bold" />
@@ -206,6 +228,7 @@
                     android:id="@+id/about"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingTop="10dp"
                     android:paddingBottom="15dp"
                     android:textSize="20dp"
@@ -215,6 +238,7 @@
                     android:id="@+id/shot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingBottom="15dp" />
 
                 <View
@@ -228,12 +252,14 @@
                     android:id="@+id/rules"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp" />
 
                 <TextView
                     android:id="@+id/prereq"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_height="wrap_content" />
 
 

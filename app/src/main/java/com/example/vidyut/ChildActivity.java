@@ -40,7 +40,7 @@ public class ChildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
-         spinner=findViewById(R.id.planets_spinner);
+        spinner=findViewById(R.id.planets_spinner);
         ArrayAdapter<String> adapter =  new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,dept);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -66,7 +66,6 @@ public class ChildActivity extends AppCompatActivity {
                 else{
                     new ContestsTask().execute(position);
                 }
-
             }
 
             @Override
@@ -81,10 +80,7 @@ public class ChildActivity extends AppCompatActivity {
         });
 
         recyclerView.setLayoutManager(layoutManager);
-
     }
-
-
 
     private class WorkShopTask extends AsyncTask<Integer,Void, List<Workshops>>{
 
@@ -164,7 +160,6 @@ public class ChildActivity extends AppCompatActivity {
             else{
                 Toast.makeText(getApplicationContext(),"Bonda",Toast.LENGTH_LONG).show();
             }
-
         }
     }
 }

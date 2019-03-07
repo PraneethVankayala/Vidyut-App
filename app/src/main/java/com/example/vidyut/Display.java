@@ -111,12 +111,35 @@ public class Display extends AppCompatActivity {
         }else{
             txtView6.setText(Html.fromHtml(contests.getPrereq()));
         }
-        txtView7.append(Integer.toString(contests.getP1()));
+        if((contests.getP1()) != 0 ){
+            txtView7.append(Integer.toString(contests.getP1()));
+        }else{
+            txtView13.setVisibility(View.GONE);
+            txtView7.setVisibility(View.GONE);
+        }
+        if((contests.getP1()) != 0 ){
+            txtView9.append(Integer.toString(contests.getP2()));
+        }else{
+            txtView14.setVisibility(View.GONE);
+            txtView9.setVisibility(View.GONE);
+        }
+        if((contests.getP1()) != 0 ){
+            txtView10.append(Integer.toString(contests.getP3()));
+        }else{
+            txtView15.setVisibility(View.GONE);
+            txtView10.setVisibility(View.GONE);
+        }
         txtView8.setText("About");
-        txtView9.append(Integer.toString(contests.getP2()));
-        txtView10.append(Integer.toString(contests.getP3()));
         txtView11.append(Integer.toString(contests.getFee()));
-        txtView12.setText(contests.getD1dur());
+        if(!(contests.getD1dur().equals(""))){
+            txtView12.setText(contests.getD1dur()+"\n");
+        }
+        if(!(contests.getD2dur().equals(""))){
+            txtView12.append(contests.getD2dur()+"\n");
+        }if(!(contests.getD3dur().equals(""))){
+            txtView12.append(contests.getD3dur());
+        }
+
         String url="https://devhub.amblygon.org/static/images/contests/"+contests.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }

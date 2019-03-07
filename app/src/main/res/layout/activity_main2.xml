@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:id="@+id/linear">
 
         <Spinner
@@ -26,7 +28,6 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="0dp" />
 
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler1"
             android:layout_width="match_parent"
@@ -41,8 +42,6 @@
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
-
-
 
     <ProgressBar
         android:id="@+id/progressBar2"
