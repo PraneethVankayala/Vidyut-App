@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="35dp"
                     android:textStyle="bold" />
@@ -65,6 +66,9 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:background="@drawable/newcolor"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginRight="10dp"
                         tools:ignore="NotSibling" />
 
                 </RelativeLayout>

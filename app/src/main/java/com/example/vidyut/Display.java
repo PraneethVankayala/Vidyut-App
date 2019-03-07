@@ -35,6 +35,7 @@ public class Display extends AppCompatActivity {
     ProgressBar progressBar;
     TextView txtView1,txtView2,txtView3,txtView4,txtView5,txtView6,txtView7,txtView8,txtView9,txtView10,txtView11,txtView12,txtView13,txtView14,txtView15;
     View vi;
+    String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
     ImageView imageView;
 
     @Override
@@ -80,7 +81,7 @@ public class Display extends AppCompatActivity {
     private void Display(Workshops workshop){
         progressBar.setVisibility(View.GONE);
         txtView1.setText(workshop.getTitle());
-        txtView2.setText(workshop.getDepartment());
+        txtView2.setText(dept[Integer.parseInt(workshop.getDepartment())]);
         txtView3.setText(workshop.getVenue());
         txtView4.setText(workshop.getAbout());
         txtView5.setText(Html.fromHtml(workshop.getRules()));
@@ -102,7 +103,7 @@ public class Display extends AppCompatActivity {
     private void Display2(Contests contests){
         progressBar.setVisibility(View.GONE);
         txtView1.setText(contests.getTitle());
-        txtView2.setText(contests.getDept());
+        txtView2.setText(dept[Integer.parseInt(contests.getDept())]);
         txtView3.setText(contests.getVenue());
         txtView4.setText(contests.getAbout());
         txtView5.setText(Html.fromHtml(contests.getRules()));
