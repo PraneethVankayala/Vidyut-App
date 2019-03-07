@@ -71,9 +71,6 @@
                         android:layout_alignParentRight="true"
                         android:textColor="@color/colorPrimaryDark"
                         android:background="@drawable/newcolor"
-                        android:paddingRight="10dp"
-                        android:paddingLeft="10dp"
-                        android:layout_marginRight="10dp"
                         tools:ignore="NotSibling" />
 
                 </RelativeLayout>
