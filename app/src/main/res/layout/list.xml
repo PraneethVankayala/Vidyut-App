@@ -19,7 +19,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="230dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/sponsers"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
@@ -28,12 +28,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="230dp" />
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.80487806" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline4"
