@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class Display extends AppCompatActivity {
     String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
     ImageView imageView;
     String back;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class Display extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         progressBar = findViewById(R.id.progressBar3);
         imageView=findViewById(R.id.displayimage);
+        button = findViewById()
         txtView1 = findViewById(R.id.name1);
         txtView2 = findViewById(R.id.dep);
         txtView3 = findViewById(R.id.venue);

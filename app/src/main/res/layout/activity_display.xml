@@ -62,6 +62,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        android:id="@+id/register"
+                        />
+
                     <TextView
                         android:id="@+id/dep"
                         android:paddingRight="10dp"
