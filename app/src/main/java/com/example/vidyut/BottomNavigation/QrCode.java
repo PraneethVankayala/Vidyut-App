@@ -57,7 +57,7 @@ public class QrCode extends Fragment {
                     else{
                         textView.setText("V19"+vid);
                     }
-                    String url="https://devhub.amblygon.org/static/QR/"+vid+".png";
+                    String url="https://vidyut.amrita.edu/static/images/QR/"+vid+".png";
                     Glide.with(view.getContext()).load(Uri.parse(url)).into(imageView);
 
                 } catch (NullPointerException n) {

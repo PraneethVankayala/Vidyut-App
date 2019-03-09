@@ -35,11 +35,11 @@ public class AddOnAdapter extends RecyclerView.Adapter<ChildViewHolder> {
     public void onBindViewHolder(@NonNull ChildViewHolder childViewHolder, int position) {
         String title=workshopList.get(position).getPurchase();
         String desc=workshopList.get(position).getPurtime();
-        int fee=workshopList.get(position).getTotal();
+       // int fee=workshopList.get(position).getTotal();
         childViewHolder.textView.setText(title);
         childViewHolder.description.setText(desc);
-        String see="Rs:"+String.valueOf(fee);
-        childViewHolder.availability.setText(see);
+      //  String see="Rs:"+String.valueOf(fee);
+     //   childViewHolder.availability.setText(see);
         childViewHolder.imageView.setImageResource(R.drawable.sponsers);
 
     }

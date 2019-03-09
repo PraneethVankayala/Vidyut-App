@@ -10,7 +10,7 @@ public class ChildViewHolder extends RecyclerView.ViewHolder {
     ImageView imageView;
     TextView textView;
     TextView description;
-    TextView availability;
+   // TextView availability;
     CardView layout;
 
     public ChildViewHolder(View itemView) {
@@ -18,7 +18,7 @@ public class ChildViewHolder extends RecyclerView.ViewHolder {
         imageView=itemView.findViewById(R.id.imageView);
         textView=itemView.findViewById(R.id.workshop_tittle);
         description=itemView.findViewById(R.id.workshop_desc);
-        availability=itemView.findViewById(R.id.workshop_availability);
+      //  availability=itemView.findViewById(R.id.workshop_availability);
         layout = itemView.findViewById(R.id.cardview2);
 
     }

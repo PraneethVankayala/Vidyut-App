@@ -42,10 +42,10 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildViewHolder> {
             String dept=workshops.get(position).getDepartment();
                 holder.textView.setText(title);
                 holder.description.setText(desc);
-                holder.availability.setVisibility(View.GONE);
+//                holder.availability.setVisibility(View.GONE);
 //                String see="Rs:"+String.valueOf(fee);
 //                holder.availability.setText(see);
-                String url="https://devhub.amblygon.org/static/images/workshops/"+id+"a.jpg";
+                String url="https://vidyut.amrita.edu/static/images/workshops/"+id+"a.jpg";
                 Glide.with(viewGroup.getContext()).load(Uri.parse(url)).into(holder.imageView);
                 holder.layout.setOnClickListener(new View.OnClickListener() {
                     @Override

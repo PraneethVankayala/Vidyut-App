@@ -33,7 +33,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeView> {
     @Override
     public void onBindViewHolder(HomeView holder, final int position) {
         holder.image.setImageResource(home.get(position).getImage());
-        holder.text3.setText(home.get(position).getName());
+       // holder.text3.setText(home.get(position).getName());
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -35,12 +35,12 @@ public class RegistrationAdapter extends RecyclerView.Adapter<ChildViewHolder> {
     public void onBindViewHolder(@NonNull ChildViewHolder childViewHolder, int position) {
         String title=workshopList.get(position).getTitle();
         String desc=workshopList.get(position).getTime();
-        int fee=workshopList.get(position).getFee();
+    //    int fee=workshopList.get(position).getFee();
         int id=workshopList.get(position).getEid();
         childViewHolder.textView.setText(title);
         childViewHolder.description.setText(desc);
-        String see="Rs:"+String.valueOf(fee);
-        childViewHolder.availability.setText(see);
+    //     String see="Rs:"+String.valueOf(fee);
+   //     childViewHolder.availability.setText(see);
         String url="https://devhub.amblygon.org/static/images/workshops/"+id+"a.jpg";
         Glide.with(viewGroup.getContext()).load(Uri.parse(url)).into(childViewHolder.imageView);
         childViewHolder.layout.setOnClickListener(new View.OnClickListener() {

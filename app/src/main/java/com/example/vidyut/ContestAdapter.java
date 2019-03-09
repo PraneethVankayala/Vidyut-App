@@ -40,10 +40,11 @@ public class ContestAdapter extends RecyclerView.Adapter<ChildViewHolder> {
         int fee=contests.get(position).getFee();
         int id=contests.get(position).getId();
         holder.textView.setText(title);
+    //    holder.availability.setVisibility(View.GONE);
         holder.description.setText(desc);
-        String see="Rs:"+String.valueOf(fee);
-        holder.availability.setText(see);
-        String url="https://devhub.amblygon.org/static/images/contests/"+id+"a.jpg";
+       // String see="Rs:"+String.valueOf(fee);
+       // holder.availability.setText(see);
+        String url="https://vidyut.amrita.edu/static/images/contests/"+id+"a.jpg";
         Glide.with(viewGroup.getContext()).load(Uri.parse(url)).into(holder.imageView);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override

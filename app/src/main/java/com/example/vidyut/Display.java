@@ -44,12 +44,12 @@ public class Display extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-//        ActionBar ab = getSupportActionBar();
-//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
-//        ab.setBackgroundDrawable(colorDrawable);
-//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-//        upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        ActionBar ab = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
+        ab.setBackgroundDrawable(colorDrawable);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         progressBar = findViewById(R.id.progressBar3);
         imageView=findViewById(R.id.displayimage);
@@ -92,7 +92,17 @@ public class Display extends AppCompatActivity {
         txtView6.setText(Html.fromHtml(workshop.getPrereq()));
         txtView7.setVisibility(View.GONE);
         txtView11.append(Integer.toString(workshop.getFee()));
-        txtView12.setText(workshop.getD1dur());
+        if(!(workshop.getD1dur().equals(""))){
+            txtView12.setText("Day1 : ");
+            txtView12.append(workshop.getD1dur()+"\n");
+        }
+        if(!(workshop.getD2dur().equals(""))){
+            txtView12.append("Day2 : ");
+            txtView12.append(workshop.getD2dur()+"\n");
+        }if(!(workshop.getD3dur().equals(""))){
+            txtView12.append("Day3 : ");
+            txtView12.append(workshop.getD3dur());
+        }
         txtView9.setVisibility(View.GONE);
         txtView10.setVisibility(View.GONE);
         txtView13.setVisibility(View.GONE);
@@ -100,7 +110,7 @@ public class Display extends AppCompatActivity {
         txtView15.setVisibility(View.GONE);
         vi.findViewById(View.GONE);
         txtView8.setText("About");
-        String url="https://devhub.amblygon.org/static/images/workshops/"+workshop.getId()+"a.jpg";
+        String url="https://vidyut.amrita.edu/static/images/workshops/"+workshop.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }
 
@@ -148,7 +158,7 @@ public class Display extends AppCompatActivity {
             txtView12.append(contests.getD3dur());
         }
 
-        String url="https://devhub.amblygon.org/static/images/contests/"+contests.getId()+"a.jpg";
+        String url="https://vidyut.amrita.edu/static/images/contests/"+contests.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }
 
