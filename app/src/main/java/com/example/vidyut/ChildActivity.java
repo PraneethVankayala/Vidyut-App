@@ -1,18 +1,24 @@
 package com.example.vidyut;
 
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +33,7 @@ import retrofit2.Call;
 public class ChildActivity extends AppCompatActivity {
     ApiManager apiManager = new ApiManager();
     TextView textView;
+    ImageView imageView;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     List<Workshops> worksho=new ArrayList<>();
@@ -34,6 +41,7 @@ public class ChildActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter<ChildViewHolder> madapter;
     Spinner spinner;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +59,13 @@ public class ChildActivity extends AppCompatActivity {
 //        upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
 //        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        textView=findViewById(R.id.textView2);
+        imageView=findViewById(R.id.hom);
         progressBar = findViewById(R.id.progressBar2);
         Bundle b = getIntent().getExtras();
-        String name = b.getString("name");
+        if(b!=null) {
+            name = b.getString("name");
+        }
         layoutManager=new LinearLayoutManager(this);
         recyclerView=findViewById(R.id.recycler1);
         recyclerView.setNestedScrollingEnabled(false);
@@ -62,6 +74,7 @@ public class ChildActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(name.equals("Workshops")) {
                     new WorkShopTask().execute(position);
+
                 }
                 else{
                     new ContestsTask().execute(position);
@@ -119,6 +132,13 @@ public class ChildActivity extends AppCompatActivity {
                 super.onPostExecute(workshops);
             }
             else{
+                worksho.clear();
+                madapter = new ChildAdapter(worksho);
+                madapter.notifyDataSetChanged();
+                recyclerView.setAdapter(madapter);
+                progressBar.setVisibility(View.INVISIBLE);
+                imageView.setVisibility(View.VISIBLE);
+                textView.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(),"Bonda",Toast.LENGTH_LONG).show();
             }
 
@@ -158,7 +178,25 @@ public class ChildActivity extends AppCompatActivity {
                 super.onPostExecute(workshops);
             }
             else{
+                contest.clear();
+                madapter = new ContestAdapter( contest);
+                madapter.notifyDataSetChanged();
+                recyclerView.setAdapter(madapter);
+                progressBar.setVisibility(View.INVISIBLE);
+                imageView.setVisibility(View.VISIBLE);
+                textView.setText("Contests Not Available");
+                textView.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(),"Bonda",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == 2404) {
+            if(data != null) {
+                name = data.getStringExtra("name");
             }
         }
     }

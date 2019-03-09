@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -37,6 +38,7 @@ public class Display extends AppCompatActivity {
     View vi;
     String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
     ImageView imageView;
+    String back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +75,10 @@ public class Display extends AppCompatActivity {
         int flag = bundle.getInt("flag");
         if(flag == 0) {
             new DisplayDetails().execute();
+            back="Workshops";
         }else {
             new ContestDetails().execute();
+            back="Contests";
         }
     }
 
@@ -118,13 +122,13 @@ public class Display extends AppCompatActivity {
             txtView13.setVisibility(View.GONE);
             txtView7.setVisibility(View.GONE);
         }
-        if((contests.getP1()) != 0 ){
+        if((contests.getP2()) != 0 ){
             txtView9.append(Integer.toString(contests.getP2()));
         }else{
             txtView14.setVisibility(View.GONE);
             txtView9.setVisibility(View.GONE);
         }
-        if((contests.getP1()) != 0 ){
+        if((contests.getP3()) != 0 ){
             txtView10.append(Integer.toString(contests.getP3()));
         }else{
             txtView15.setVisibility(View.GONE);
@@ -133,11 +137,14 @@ public class Display extends AppCompatActivity {
         txtView8.setText("About");
         txtView11.append(Integer.toString(contests.getFee()));
         if(!(contests.getD1dur().equals(""))){
-            txtView12.setText(contests.getD1dur()+"\n");
+            txtView12.setText("Day1 : ");
+            txtView12.append(contests.getD1dur()+"\n");
         }
         if(!(contests.getD2dur().equals(""))){
+            txtView12.append("Day2 : ");
             txtView12.append(contests.getD2dur()+"\n");
         }if(!(contests.getD3dur().equals(""))){
+            txtView12.append("Day3 : ");
             txtView12.append(contests.getD3dur());
         }
 
@@ -189,5 +196,19 @@ public class Display extends AppCompatActivity {
             Display2(contests);
             super.onPostExecute(contests);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent intent= new Intent();
+                intent.putExtra("name", back);
+                setResult(RESULT_OK, intent);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
