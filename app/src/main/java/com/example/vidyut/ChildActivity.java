@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -42,11 +44,29 @@ public class ChildActivity extends AppCompatActivity {
     RecyclerView.Adapter<ChildViewHolder> madapter;
     Spinner spinner;
     String name;
+    Typeface typeface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        TextView textView=new TextView(getApplicationContext());
+        typeface = ResourcesCompat.getFont(this, R.font.frontage_bold);
+        textView.setTypeface(typeface);
+        textView.setTextColor(getResources().getColor(R.color.colorPrimary));
+        Bundle b = getIntent().getExtras();
+        if(b!=null) {
+            name = b.getString("name");
+        }
+        if(name.equals("Workshops")){
+            textView.setText("WORKSHOPS");
+        }
+        else if(name.equals("Contests")){
+            textView.setText("CONTESTS");
+        }
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(textView);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
         spinner=findViewById(R.id.planets_spinner);
         ArrayAdapter<String> adapter =  new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,dept);
@@ -56,16 +76,12 @@ public class ChildActivity extends AppCompatActivity {
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
         ab.setBackgroundDrawable(colorDrawable);
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
         textView=findViewById(R.id.textView2);
         imageView=findViewById(R.id.hom);
         progressBar = findViewById(R.id.progressBar2);
-        Bundle b = getIntent().getExtras();
-        if(b!=null) {
-            name = b.getString("name");
-        }
+
         layoutManager=new LinearLayoutManager(this);
         recyclerView=findViewById(R.id.recycler1);
         recyclerView.setNestedScrollingEnabled(false);
