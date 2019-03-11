@@ -136,7 +136,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     try {
                         Auth = responseAuth.getAuth();
                         detailsverify(Auth,account);
-                        Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
                     }
                     catch (NullPointerException n)
                     {
@@ -172,7 +172,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 try{        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
 
                     Auth=responseAuth.getAuth();
-                    Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
                 }
                 catch (NullPointerException e){
                     mGoogleSignInClient.signOut();

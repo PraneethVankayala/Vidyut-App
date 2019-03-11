@@ -207,7 +207,7 @@ public class Display extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Workshops workshop) {
-            Toast.makeText(getApplicationContext(),workshop.getTitle(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),workshop.getTitle(),Toast.LENGTH_SHORT).show();
             Display(workshop);
             super.onPostExecute(workshop);
 
@@ -230,7 +230,7 @@ public class Display extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Contests contests) {
-            Toast.makeText(getApplicationContext(),contests.getTitle(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),contests.getTitle(),Toast.LENGTH_SHORT).show();
             Display2(contests);
             super.onPostExecute(contests);
         }

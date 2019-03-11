@@ -65,19 +65,19 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void setData(){
-        Toast.makeText(getApplicationContext(),"Success1",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Success1",Toast.LENGTH_SHORT).show();
         apiManager.editDetails(token,fname,lname,phno,sex,new Callback<Details>() {
 
             @Override
             public void onResponse(Call<Details> call, Response<Details> response) {
-                Toast.makeText(getApplicationContext(),"Success2",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Success2",Toast.LENGTH_SHORT).show();
                 Details details = response.body();
                 okhttp3.Response jspn=response.raw();
-                Toast.makeText(getApplicationContext(),jspn.toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),jspn.toString(),Toast.LENGTH_LONG).show();
                 if(response.isSuccessful()) {
                     // showResponse(response.body().toString());
-                    Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_LONG).show();
-                    Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "post submitted to API." + response.body().toString());
                 }
             }

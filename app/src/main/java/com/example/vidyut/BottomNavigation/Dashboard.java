@@ -99,7 +99,7 @@ public class Dashboard extends Fragment {
                     String pic = user.getDatas().getPic();
                     String phno = user.getDatas().getPhno();
                     String s;
-                    Toast.makeText(getContext(), vid + email, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), vid + email, Toast.LENGTH_LONG).show();
                     textView.setText(fname+" "+lname);
                     textView1.setText(email);
                     if(vid.length()==3){
