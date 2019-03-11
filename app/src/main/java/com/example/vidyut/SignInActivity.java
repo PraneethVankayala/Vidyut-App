@@ -20,13 +20,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "hello";
     public static GoogleSignInClient mGoogleSignInClient;
-    String token;
     ProgressBar progressBar;
     public static  String Auth;
+    String token;
     Data data;
     ApiManager apiManager=new ApiManager();
      private static final int RC_SIGN_IN = 0;
@@ -88,12 +87,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                    updateUI(GoogleSignInAccount);
                 }
                 else{
-                    mGoogleSignInClient.signOut();
-//                   Bundle bu = new Bundle();
-//                   bu.putString("token",token);
-//                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
-//                   i.putExtras(bu);
-//                   startActivity(i);
+                   // mGoogleSignInClient.signOut();
+                   Bundle bu = new Bundle();
+                   bu.putString("token",token);
+                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
+                   i.putExtras(bu);
+                   startActivity(i);
                 }
 
             }

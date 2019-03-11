@@ -48,8 +48,8 @@ public class EditProfileActivity extends AppCompatActivity {
         this.college = college;
         this.institution = institution;
         this.year = year;
-//        setData();
-//        setEduData();
+        setData();
+        setEduData();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
     }

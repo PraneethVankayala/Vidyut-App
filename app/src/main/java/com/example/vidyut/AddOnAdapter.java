@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
@@ -40,8 +41,8 @@ public class AddOnAdapter extends RecyclerView.Adapter<ChildViewHolder> {
         childViewHolder.description.setText(desc);
       //  String see="Rs:"+String.valueOf(fee);
      //   childViewHolder.availability.setText(see);
-        childViewHolder.imageView.setImageResource(R.drawable.sponsers);
-
+        childViewHolder.imageView.setImageResource(R.drawable.addons1);
+        childViewHolder.imageView.setScaleType(ImageView.ScaleType.FIT_XY);
     }
 
     @Override

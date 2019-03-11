@@ -59,7 +59,21 @@ public class AccountWorkshops extends Fragment {
 
     }
 
-    private class MyTask extends AsyncTask<Void, Void, List<Registration>> {
+
+    private void signOut() {
+        mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+        mGoogleSignInClient.signOut().addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent intent=new Intent(getContext(),SignInActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+
+    public class MyTask extends AsyncTask<Void, Void, List<Registration>> {
         @Override
         protected List<Registration> doInBackground(Void... voids) {
             List<Registration> registrations = new ArrayList<>();
@@ -74,7 +88,7 @@ public class AccountWorkshops extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }catch (IllegalStateException e){
-                signOut();
+                //signOut();
             }
 
             return registrations;
@@ -84,22 +98,13 @@ public class AccountWorkshops extends Fragment {
 
         @Override
         protected void onPostExecute(List<Registration> registrations) {
-                RegistrationAdapter recyclerViewAdapter = new RegistrationAdapter(registrations);
-                recyclerView.setAdapter(recyclerViewAdapter);
+            RegistrationAdapter recyclerViewAdapter = new RegistrationAdapter(registrations);
+            recyclerView.setAdapter(recyclerViewAdapter);
 
         }
 
     }
 
-    private void signOut() {
-        mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
-        mGoogleSignInClient.signOut().addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Intent intent=new Intent(getContext(),SignInActivity.class);
-                startActivity(intent);
-
-            }
-        });
-    }
 }
+
+

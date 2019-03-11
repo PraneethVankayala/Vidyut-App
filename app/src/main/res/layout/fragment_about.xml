@@ -25,6 +25,7 @@
             android:layout_height="match_parent"
             android:text="Vidyut"
             android:paddingTop="5dp"
+            android:fontFamily="@font/frontage_bold"
             android:textSize="30dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_margin="10dp"
@@ -47,29 +48,16 @@
 
         <ImageView
             android:id="@+id/amrita_logo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_margin="10dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/amrita"
+            android:src="@drawable/amrita2"
             android:scaleType="fitXY" />
 
         <TextView
-            android:id="@+id/amrita"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Amrita"
-            android:paddingTop="5dp"
-            android:textSize="30dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-            android:textStyle="bold"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textAlignment=""
             android:text="@string/amrita_des"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
 
