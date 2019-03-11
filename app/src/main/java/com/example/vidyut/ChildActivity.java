@@ -31,7 +31,9 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -54,6 +56,7 @@ public class ChildActivity extends AppCompatActivity {
     String name;
     int cacheSize = (int)(0.5 * 1024 * 1024);
     Typeface typeface;
+    HashMap<String,Integer> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +79,21 @@ public class ChildActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(textView);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
+        String dept[] = {"Select Department","CSE","ECE", "ME", "EEE", "Civil", "Biotech", "Commerce and Management", "Maths", "Physics","Chemistry","English", "Gaming", "Others"};
+         map=new HashMap<>();
+        map.put("CSE",1);
+        map.put("ECE",2);
+        map.put("ME",3);
+        map.put("Physics",4);
+        map.put("Chemistry",5);
+        map.put("English",6);
+        map.put("Biotech",7);
+        map.put("Commerce and Management",9);
+        map.put("Civil",10);
+        map.put("EEE",11);
+        map.put("Gaming",12);
+        map.put("Maths",13);
+        map.put("Others",14);
         spinner=findViewById(R.id.planets_spinner);
         ArrayAdapter<String> adapter =  new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,dept);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -97,21 +114,21 @@ public class ChildActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(name.equals("Workshops")) {
-                    new WorkShopTask().execute(position);
+                    new WorkShopTask().execute(dept[position]);
 
                 }
                 else{
-                    new ContestsTask().execute(position);
+                    new ContestsTask().execute(dept[position]);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 if(name.equals("Workshops")) {
-                    new WorkShopTask().execute(0);
+                    new WorkShopTask().execute(dept[0]);
                 }
                 else{
-                    new ContestsTask().execute(0);
+                    new ContestsTask().execute(dept[0]);
                 }
             }
         });
@@ -119,11 +136,11 @@ public class ChildActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    private class WorkShopTask extends AsyncTask<Integer,Void, List<Workshops>>{
+    private class WorkShopTask extends AsyncTask<String,Void, List<Workshops>>{
 
         int s;
         @Override
-        protected List<Workshops> doInBackground(Integer...In) {
+        protected List<Workshops> doInBackground(String...strings) {
 
             Cache cache = new Cache(getCacheDir(), cacheSize);
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -169,7 +186,14 @@ public class ChildActivity extends AppCompatActivity {
 
 //            Retrofit retrofit = builder.build();
             ApiManager apiManager = new ApiManager(okHttpClient);
-            int pos=In[0];
+            int pos;
+            if(strings[0]=="Select Department"){
+                pos=0;
+            }
+            else{
+                 pos=map.get(strings[0]);
+                }
+
             List<Workshops> workshops=new ArrayList<>();
             List<Workshops> workshops1=new ArrayList<>();
             Call<List<Workshops>> call=apiManager.getWorkshops();
@@ -214,10 +238,10 @@ public class ChildActivity extends AppCompatActivity {
         }
     }
 
-    private class ContestsTask extends AsyncTask<Integer,Void, List<Contests>>{
+    private class ContestsTask extends AsyncTask<String,Void, List<Contests>>{
 
         @Override
-        protected List<Contests> doInBackground(Integer...In) {
+        protected List<Contests> doInBackground(String...strings) {
             Cache cache = new Cache(getCacheDir(), cacheSize);
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
                     .cache(cache).addInterceptor(new Interceptor() {
@@ -248,7 +272,14 @@ public class ChildActivity extends AppCompatActivity {
                     })
 
                     .build();
-            int pos=In[0];
+            int pos;
+            if(strings[0]=="Select Department"){
+                pos=0;
+            }
+            else{
+                pos=map.get(strings[0]);
+            }
+
             List<Contests> workshops=new ArrayList<>();
             List<Contests> workshops1=new ArrayList<>();
             ApiManager apiManager = new ApiManager(okHttpClient);
