@@ -88,7 +88,7 @@ public class AccountWorkshops extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }catch (IllegalStateException e){
-                //signOut();
+                signOut();
             }
 
             return registrations;

@@ -72,13 +72,13 @@ public class ApiManager {
         return  contest;
     }
 
-    public void editDetails(String auth,String fname,String lname,String phno,int sex, Callback<Details> detailsCallback){
-        Call<Details> detailsCall = service.editDetails(auth,fname,lname,phno,sex);
+    public void editDetails(String auth,Details details, Callback<ResponseDet> detailsCallback){
+        Call<ResponseDet> detailsCall = service.editDetails(auth,details);
         detailsCall.enqueue(detailsCallback);
     }
 
-    public void editEduDetails(String auth,String course,String major,String college,String institution,int year, Callback<EduDetails> eduDetailsCallback){
-        Call<EduDetails> eduDetailsCall = service.editEduDetails(auth,course,major,college,institution,year);
+    public void editEduDetails(String auth,EduDetails eduDetails, Callback<ResponseDet> eduDetailsCallback){
+        Call<ResponseDet> eduDetailsCall = service.editEduDetails(auth,eduDetails);
         eduDetailsCall.enqueue(eduDetailsCallback);
     }
 

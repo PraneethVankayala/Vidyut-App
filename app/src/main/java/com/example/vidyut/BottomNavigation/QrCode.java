@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.vidyut.ApiManager;
 import com.example.vidyut.Data;
@@ -63,7 +64,7 @@ public class QrCode extends Fragment {
                         textView.setText("V19"+vid);
                     }
                     String url="https://vidyut.amrita.edu/static/images/QR/"+vid+".png";
-                        Glide.with(view.getContext()).load(Uri.parse(url)).into(imageView);
+                        Glide.with(view.getContext()).load(Uri.parse(url)).diskCacheStrategy(DiskCacheStrategy.DATA).into(imageView);
 
 
                 } catch (NullPointerException n) {

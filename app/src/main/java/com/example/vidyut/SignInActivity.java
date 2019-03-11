@@ -88,8 +88,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 else{
                    // mGoogleSignInClient.signOut();
+                   token=auth;
                    Bundle bu = new Bundle();
                    bu.putString("token",token);
+                   Toast.makeText(getApplicationContext(),auth,Toast.LENGTH_SHORT).show();
                    Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
                    i.putExtras(bu);
                    startActivity(i);
@@ -134,6 +136,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     ResponseAuth responseAuth=response.body();
                     try {
                         Auth = responseAuth.getAuth();
+                        Log.i("The token auth",Auth);
                         detailsverify(Auth,account);
                         //Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
                     }
@@ -171,6 +174,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 try{        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
 
                     Auth=responseAuth.getAuth();
+                    Log.i("The token auth",Auth);
                     //Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
                 }
                 catch (NullPointerException e){

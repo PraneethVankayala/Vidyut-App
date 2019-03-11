@@ -167,14 +167,14 @@ public class Display extends AppCompatActivity {
         }
         txtView8.setText("About");
         txtView11.append(Integer.toString(contests.getFee()));
-        if(!(contests.getD1beg()!=null)){
+        if((contests.getD1beg()!=null)){
             txtView12.setText("Day1 : ");
             txtView12.append(contests.getD1beg()+" - "+contests.getD1end()+"\n");
         }
-        if(!(contests.getD2beg()!=null)){
+        if((contests.getD2beg()!=null)){
             txtView12.append("Day2 : ");
-            txtView12.append(contests.getD2dur()+" - "+contests.getD2end()+"\n");
-        }if(!(contests.getD3beg()!=null)){
+            txtView12.append(contests.getD2beg()+" - "+contests.getD2end()+"\n");
+        }if((contests.getD3beg()!=null)){
             txtView12.append("Day3 : ");
             txtView12.append(contests.getD3beg()+" - "+contests.getD3end());
         }

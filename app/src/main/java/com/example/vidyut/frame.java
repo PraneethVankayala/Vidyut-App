@@ -28,9 +28,7 @@ public class frame extends Fragment implements AdapterView.OnItemSelectedListene
         editText2=view.findViewById(R.id.phno);
         ((EditProfileActivity)getActivity()).next.setText("Next");
         ((EditProfileActivity)getActivity()).prev.setVisibility(View.GONE);
-              fname = (editText.getText()).toString();
-              lname = editText1.getText().toString().trim();
-              phno = editText2.getText().toString().trim();
+
         String[] items = new String[]{"Select","Male","Female","Others"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -41,6 +39,9 @@ public class frame extends Fragment implements AdapterView.OnItemSelectedListene
             ((EditProfileActivity)getActivity()).next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    fname = (editText.getText()).toString();
+                    lname = editText1.getText().toString().trim();
+                    phno = editText2.getText().toString().trim();
                     ((EditProfileActivity)getActivity()).retrivefrag(fname,lname,phno,sex);
                 }
             });
