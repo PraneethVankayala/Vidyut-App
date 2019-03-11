@@ -90,7 +90,6 @@ public class ChildActivity extends AppCompatActivity {
         textView=findViewById(R.id.textView2);
         imageView=findViewById(R.id.hom);
         progressBar = findViewById(R.id.progressBar2);
-
         layoutManager=new LinearLayoutManager(this);
         recyclerView=findViewById(R.id.recycler1);
         recyclerView.setNestedScrollingEnabled(false);
@@ -128,7 +127,7 @@ public class ChildActivity extends AppCompatActivity {
 
             Cache cache = new Cache(getCacheDir(), cacheSize);
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                                       .cache(cache).addInterceptor(new Interceptor() {
+                    .cache(cache).addInterceptor(new Interceptor() {
 
                         @Override
                         public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
@@ -267,7 +266,7 @@ public class ChildActivity extends AppCompatActivity {
             }
             return workshops1;
         }
-            @Override
+        @Override
         protected void onPostExecute(List<Contests> workshops) {
             if(workshops.size()!=0) {
                 contest.clear();
@@ -289,7 +288,6 @@ public class ChildActivity extends AppCompatActivity {
             }
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

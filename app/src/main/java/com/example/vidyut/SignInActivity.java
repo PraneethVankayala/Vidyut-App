@@ -61,11 +61,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void updateUI(GoogleSignInAccount account) {
         if(account != null){
-            Bundle bundle=new Bundle();
-            String token=account.getIdToken();
-            bundle.putString("hello",token);
             Intent intent=new Intent(SignInActivity.this,MainActivity.class);
-            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
@@ -92,12 +88,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                    updateUI(GoogleSignInAccount);
                 }
                 else{
-                    //mGoogleSignInClient.signOut();
-                   Bundle bu = new Bundle();
-                   bu.putString("token",token);
-                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
-                   i.putExtras(bu);
-                   startActivity(i);
+                    mGoogleSignInClient.signOut();
+//                   Bundle bu = new Bundle();
+//                   bu.putString("token",token);
+//                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
+//                   i.putExtras(bu);
+//                   startActivity(i);
                 }
 
             }
@@ -173,7 +169,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
                 ResponseAuth responseAuth=response.body();
-                try{
+                try{        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+
                     Auth=responseAuth.getAuth();
                     //Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
                 }

@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vidyut.CloudMessaging.AppMessage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,7 @@ public class AccountContests extends Fragment {
             Call<List<Registration>> call = apiManager.getRegContests(auth);
             try {
                 registrations = call.execute().body();
+                AppMessage.subscribetotopic(new ArrayList(registrations),3);
 
             } catch (IOException e) {
                 e.printStackTrace();

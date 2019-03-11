@@ -40,9 +40,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeView> {
                 Bundle b =  new Bundle();
                 String name = home.get(position).getName();
                 b.putString("name",name);
+                if(name.equals("Schedule")){
+                   Intent intent = new Intent(viewGroup.getContext(),SchedulerActivity.class);
+                   startActivity(viewGroup.getContext(),intent,null);
+                }else if(name.equals("Maps")){
+                 Intent i = new Intent(viewGroup.getContext(),MapActivity.class);
+                 startActivity(viewGroup.getContext(),i,null);
+                }else{
                 Intent intent=new Intent(viewGroup.getContext(),ChildActivity.class);
                 intent.putExtras(b);
                 startActivity(viewGroup.getContext(),intent,null);
+                }
             }
         });
     }

@@ -108,8 +108,8 @@ public class Home extends Fragment {
         arrayList = new ArrayList<com.example.vidyut.Home>();
         arrayList.add(new com.example.vidyut.Home("Contests",R.drawable.contests1));
         arrayList.add(new com.example.vidyut.Home("Workshops",R.drawable.workshops1));
-        arrayList.add(new com.example.vidyut.Home("Concerts",R.drawable.concerts));
-        arrayList.add(new com.example.vidyut.Home("Talks",R.drawable.tedtalks));
+//        arrayList.add(new com.example.vidyut.Home("Schedule",R.drawable.schedule));
+//        arrayList.add(new com.example.vidyut.Home("Map",R.drawable.maps));
 
         return arrayList;
     }

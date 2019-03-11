@@ -1,7 +1,5 @@
 package com.example.vidyut;
 
-import android.content.AsyncTaskLoader;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,9 +10,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +37,7 @@ public class Display extends AppCompatActivity {
     String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
     ImageView imageView;
     String back;
+    String reg;
     Button button;
 
     @Override
@@ -75,6 +72,7 @@ public class Display extends AppCompatActivity {
         cname=findViewById(R.id.cname);
         cphno=findViewById(R.id.cphno);
         vi = findViewById(R.id.divider2);
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         id = bundle.getInt("id");
@@ -91,9 +89,11 @@ public class Display extends AppCompatActivity {
     private void Display(Workshops workshop){
         progressBar.setVisibility(View.GONE);
         txtView1.setText(workshop.getTitle());
+        txtView2.setVisibility(View.VISIBLE);
         txtView2.setText(dept[workshop.getDepartment()]);
         txtView3.setText(workshop.getVenue());
         txtView4.setText(workshop.getAbout());
+        button.setVisibility(View.VISIBLE);
         txtView5.setText(Html.fromHtml(workshop.getRules()));
         txtView6.setText(Html.fromHtml(workshop.getPrereq()));
         txtView7.setVisibility(View.GONE);
@@ -114,8 +114,21 @@ public class Display extends AppCompatActivity {
         txtView13.setVisibility(View.GONE);
         txtView14.setVisibility(View.GONE);
         txtView15.setVisibility(View.GONE);
+        int rseats = workshop.getRmseats();
+        if(rseats == 0){
+            button.setClickable(false);
+        }
         vi.findViewById(View.GONE);
         txtView8.setText("About");
+        reg= "https://vidyut.amrita.edu/workshops/"+String.valueOf(workshop.getId());
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(reg));
+                startActivity(i);
+            }
+        });
         String url="https://vidyut.amrita.edu/static/images/workshops/"+workshop.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }
@@ -123,9 +136,11 @@ public class Display extends AppCompatActivity {
     private void Display2(Contests contests){
         progressBar.setVisibility(View.GONE);
         txtView1.setText(contests.getTitle());
+        txtView2.setVisibility(View.VISIBLE);
         txtView2.setText(dept[Integer.parseInt(contests.getDept())]);
         txtView3.setText(contests.getVenue());
         txtView4.setText(contests.getAbout());
+        button.setVisibility(View.VISIBLE);
         txtView5.setText(Html.fromHtml(contests.getRules()));
         if(Html.fromHtml(contests.getPrereq()).equals("")){
             txtView6.setVisibility(View.GONE);
@@ -163,7 +178,15 @@ public class Display extends AppCompatActivity {
             txtView12.append("Day3 : ");
             txtView12.append(contests.getD3beg()+" - "+contests.getD3end());
         }
-
+        reg= "https://vidyut.amrita.edu/contests/"+String.valueOf(contests.getId());
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(reg));
+                startActivity(i);
+            }
+        });
         String url="https://vidyut.amrita.edu/static/images/contests/"+contests.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }

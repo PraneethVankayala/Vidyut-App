@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vidyut.CloudMessaging.AppMessage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +30,6 @@ public class AccountAddons extends Fragment {
     View view;
     RecyclerView recyclerView;
     List<MyOrder> wokshopList=new ArrayList<>();
-    TextView textView;
-    LinearLayout linearLayout;
-    Button button;
 
 
     @Nullable
@@ -38,9 +37,6 @@ public class AccountAddons extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_info,container,false);
         recyclerView = view.findViewById(R.id.workshop_recycler);
-        textView=view.findViewById(R.id.textView2);
-        linearLayout=view.findViewById(R.id.linear2);
-        button=view.findViewById(R.id.reg);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         new orderTask().execute();
         return view;
@@ -55,6 +51,7 @@ public class AccountAddons extends Fragment {
             Call<List<MyOrder>> call2=apiManager.getorder(auth);
             try {
                 order=call2.execute().body();
+                AppMessage.subscribetotopic(new ArrayList(order),2);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -64,13 +61,9 @@ public class AccountAddons extends Fragment {
 
         @Override
         protected void onPostExecute(List<MyOrder> myOrders) {
-           if(myOrders.size()!=0) {
                AddOnAdapter recyclerViewAdapter = new AddOnAdapter(myOrders);
                recyclerView.setAdapter(recyclerViewAdapter);
-           }
-           else{
-               textView.setVisibility(View.VISIBLE);
-           }
+
         }
     }
 }
