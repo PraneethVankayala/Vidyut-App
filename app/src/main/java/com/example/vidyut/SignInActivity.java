@@ -61,11 +61,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void updateUI(GoogleSignInAccount account) {
         if(account != null){
-            Bundle bundle=new Bundle();
-            String token=account.getIdToken();
-            bundle.putString("hello",token);
             Intent intent=new Intent(SignInActivity.this,MainActivity.class);
-            intent.putExtras(bundle);
             startActivity(intent);
         }
     }

@@ -41,9 +41,11 @@ public class SchedulerActivity extends AppCompatActivity {
         TextView textView=new TextView(getApplicationContext());
         typeface = ResourcesCompat.getFont(this, R.font.frontage_bold);
         textView.setTypeface(typeface);
-        textView.setText("VIDYUT");
+        textView.setText("SCHEDULE");
         textView.setTextColor(getResources().getColor(R.color.colorPrimary));
         ActionBar ab = getSupportActionBar();
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(textView);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
         ab.setBackgroundDrawable(colorDrawable);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

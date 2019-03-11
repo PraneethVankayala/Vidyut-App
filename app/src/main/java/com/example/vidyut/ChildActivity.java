@@ -1,5 +1,6 @@
 package com.example.vidyut;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -7,6 +8,8 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
@@ -30,10 +33,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ChildActivity extends AppCompatActivity {
-    ApiManager apiManager = new ApiManager();
     TextView textView;
     ImageView imageView;
     RecyclerView recyclerView;
@@ -44,6 +52,7 @@ public class ChildActivity extends AppCompatActivity {
     RecyclerView.Adapter<ChildViewHolder> madapter;
     Spinner spinner;
     String name;
+    int cacheSize = (int)(0.5 * 1024 * 1024);
     Typeface typeface;
 
     @Override
@@ -119,6 +128,51 @@ public class ChildActivity extends AppCompatActivity {
         int s;
         @Override
         protected List<Workshops> doInBackground(Integer...In) {
+
+            Cache cache = new Cache(getCacheDir(), cacheSize);
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                                       .cache(cache).addInterceptor(new Interceptor() {
+
+                        @Override
+                        public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
+
+                            Request request = chain.request();
+
+                            if (!isNetworkAvailable()) {
+
+                                int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale \
+
+                                request = request
+
+                                        .newBuilder()
+
+                                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+
+                                        .build();
+
+                            }
+
+                            return chain.proceed(request);
+
+                        }
+
+                    })
+
+                    .build();
+
+
+//            Retrofit.Builder builder = new Retrofit.Builder()
+//
+//                    .baseUrl("https://hub.amblygon.org")
+//
+//                    .client(okHttpClient)
+//
+//                    .addConverterFactory(GsonConverterFactory.create());
+
+
+
+//            Retrofit retrofit = builder.build();
+            ApiManager apiManager = new ApiManager(okHttpClient);
             int pos=In[0];
             List<Workshops> workshops=new ArrayList<>();
             List<Workshops> workshops1=new ArrayList<>();
@@ -126,7 +180,7 @@ public class ChildActivity extends AppCompatActivity {
             try {
                 workshops=call.execute().body();
                 for(int i=0;i<workshops.size();i++){
-                    if(Integer.parseInt(workshops.get(i).getDepartment())==pos||pos==0){
+                    if(workshops.get(i).getDepartment()==pos||pos==0){
                         workshops1.add(workshops.get(i));
                     }
                 }
@@ -168,10 +222,42 @@ public class ChildActivity extends AppCompatActivity {
 
         @Override
         protected List<Contests> doInBackground(Integer...In) {
+            Cache cache = new Cache(getCacheDir(), cacheSize);
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .cache(cache).addInterceptor(new Interceptor() {
+
+                        @Override
+                        public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
+
+                            Request request = chain.request();
+
+                            if (!isNetworkAvailable()) {
+
+                                int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale \
+
+                                request = request
+
+                                        .newBuilder()
+
+                                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+
+                                        .build();
+
+                            }
+
+                            return chain.proceed(request);
+
+                        }
+
+                    })
+
+                    .build();
             int pos=In[0];
             List<Contests> workshops=new ArrayList<>();
             List<Contests> workshops1=new ArrayList<>();
+            ApiManager apiManager = new ApiManager(okHttpClient);
             Call<List<Contests>> call=apiManager.getContests();
+
             try {
                 workshops = call.execute().body();
                 for (int i = 0; i < workshops.size(); i++) {
@@ -218,5 +304,17 @@ public class ChildActivity extends AppCompatActivity {
                 name = data.getStringExtra("name");
             }
         }
+    }
+
+    private boolean isNetworkAvailable() {
+
+        ConnectivityManager connectivityManager
+
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
     }
 }

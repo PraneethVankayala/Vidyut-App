@@ -1,7 +1,5 @@
 package com.example.vidyut;
 
-import android.content.AsyncTaskLoader;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,7 +10,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +32,7 @@ public class Display extends AppCompatActivity {
     ApiManager apiManager = new ApiManager();
     int id;
     ProgressBar progressBar;
-    TextView txtView1,txtView2,txtView3,txtView4,txtView5,txtView6,txtView7,txtView8,txtView9,txtView10,txtView11,txtView12,txtView13,txtView14,txtView15;
+    TextView txtView1,txtView2,txtView3,txtView4,txtView5,txtView6,txtView7,txtView8,txtView9,txtView10,txtView11,txtView12,txtView13,txtView14,txtView15,cname,cphno;
     View vi;
     String dept[] = {"Select Department","CSE","ECE", "ME", "Physics", "Chemistry", "English", "Biotech","BUG", "Commerce and Management", "Civil", "EEE", "Gaming", "Maths", "Others"};
     ImageView imageView;
@@ -72,6 +69,8 @@ public class Display extends AppCompatActivity {
         txtView13 = findViewById(R.id.fprize);
         txtView14 = findViewById(R.id.secprize);
         txtView15 = findViewById(R.id.thdprize);
+        cname=findViewById(R.id.cname);
+        cphno=findViewById(R.id.cphno);
         vi = findViewById(R.id.divider2);
 
         Intent intent = getIntent();
@@ -91,7 +90,7 @@ public class Display extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         txtView1.setText(workshop.getTitle());
         txtView2.setVisibility(View.VISIBLE);
-        txtView2.setText(dept[Integer.parseInt(workshop.getDepartment())]);
+        txtView2.setText(dept[workshop.getDepartment()]);
         txtView3.setText(workshop.getVenue());
         txtView4.setText(workshop.getAbout());
         button.setVisibility(View.VISIBLE);
@@ -99,16 +98,16 @@ public class Display extends AppCompatActivity {
         txtView6.setText(Html.fromHtml(workshop.getPrereq()));
         txtView7.setVisibility(View.GONE);
         txtView11.append(Integer.toString(workshop.getFee()));
-        if(!(workshop.getD1dur().equals(""))){
+        if(workshop.getD1big()!=null){
             txtView12.setText("Day1 : ");
-            txtView12.append(workshop.getD1dur()+"\n");
+            txtView12.append(workshop.getD1big()+" - "+workshop.getD1end()+"\n");
         }
-        if(!(workshop.getD2dur().equals(""))){
+        if(workshop.getD2beg()!=null){
             txtView12.append("Day2 : ");
-            txtView12.append(workshop.getD2dur()+"\n");
-        }if(!(workshop.getD3dur().equals(""))){
+            txtView12.append(workshop.getD2beg()+" - "+workshop.getD2end()+"\n");
+        }if(workshop.getD3beg()!=null){
             txtView12.append("Day3 : ");
-            txtView12.append(workshop.getD3dur());
+            txtView12.append(workshop.getD3beg()+" - "+workshop.getD3end());
         }
         txtView9.setVisibility(View.GONE);
         txtView10.setVisibility(View.GONE);
@@ -168,16 +167,16 @@ public class Display extends AppCompatActivity {
         }
         txtView8.setText("About");
         txtView11.append(Integer.toString(contests.getFee()));
-        if(!(contests.getD1dur().equals(""))){
+        if(!(contests.getD1beg()!=null)){
             txtView12.setText("Day1 : ");
-            txtView12.append(contests.getD1dur()+"\n");
+            txtView12.append(contests.getD1beg()+" - "+contests.getD1end()+"\n");
         }
-        if(!(contests.getD2dur().equals(""))){
+        if(!(contests.getD2beg()!=null)){
             txtView12.append("Day2 : ");
-            txtView12.append(contests.getD2dur()+"\n");
-        }if(!(contests.getD3dur().equals(""))){
+            txtView12.append(contests.getD2dur()+" - "+contests.getD2end()+"\n");
+        }if(!(contests.getD3beg()!=null)){
             txtView12.append("Day3 : ");
-            txtView12.append(contests.getD3dur());
+            txtView12.append(contests.getD3beg()+" - "+contests.getD3end());
         }
         reg= "https://vidyut.amrita.edu/contests/"+String.valueOf(contests.getId());
         button.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +190,6 @@ public class Display extends AppCompatActivity {
         String url="https://vidyut.amrita.edu/static/images/contests/"+contests.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
     }
-
     private class DisplayDetails extends AsyncTask<Void, Void, Workshops> {
 
 
@@ -237,6 +235,7 @@ public class Display extends AppCompatActivity {
             super.onPostExecute(contests);
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

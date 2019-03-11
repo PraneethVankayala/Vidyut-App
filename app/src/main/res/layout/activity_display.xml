@@ -275,6 +275,31 @@
                     android:layout_width="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_height="wrap_content" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/divider5"
+                    android:background="?android:attr/listDivider"
+                    android:paddingBottom="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="For any queries contact"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/cname"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/cphno"/>
+
 
 
             </LinearLayout>

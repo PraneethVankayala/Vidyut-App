@@ -13,12 +13,9 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-
 import com.example.vidyut.BottomNavigation.About;
 import com.example.vidyut.BottomNavigation.Dashboard;
 import com.example.vidyut.BottomNavigation.Home;
@@ -56,9 +53,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        Intent intent=getIntent();
-//        Bundle b=intent.getExtras();
-//        String s=b.getString("hello");
         loadFragment(new Home());
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
