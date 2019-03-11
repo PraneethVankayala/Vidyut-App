@@ -70,7 +70,7 @@ public class Home extends Fragment {
     }
 
     private void setSliderViews() {
-        for(int i = 0; i<3; i++) {
+        for(int i = 0; i<=3; i++) {
             SliderView sliderView = new DefaultSliderView(getContext());
 
             switch (i) {
@@ -78,7 +78,7 @@ public class Home extends Fragment {
                     sliderView.setImageDrawable(R.drawable.ic_launcher_background);
                     break;
                 case 1:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+                    sliderView.setImageUrl("https://images.pexels.com/jCgvhdbjlcbvbjn");
                     break;
                 case 2:
                     sliderView.setImageUrl("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
@@ -89,8 +89,6 @@ public class Home extends Fragment {
             }
 
             sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);
-            sliderView.setDescription("The quick brown fox jumps over the lazy dog.\n" +
-                    "Jackdaws love my big sphinx of quartz. " + (i + 1));
             final int finalI = i;
 
             sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
