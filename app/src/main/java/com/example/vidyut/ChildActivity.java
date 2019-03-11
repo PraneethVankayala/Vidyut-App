@@ -64,6 +64,9 @@ public class ChildActivity extends AppCompatActivity {
         else if(name.equals("Contests")){
             textView.setText("CONTESTS");
         }
+        else if(name.equals("Schedule")){
+            textView.setText("SCHEDULE");
+        }
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(textView);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,7 +84,6 @@ public class ChildActivity extends AppCompatActivity {
         textView=findViewById(R.id.textView2);
         imageView=findViewById(R.id.hom);
         progressBar = findViewById(R.id.progressBar2);
-
         layoutManager=new LinearLayoutManager(this);
         recyclerView=findViewById(R.id.recycler1);
         recyclerView.setNestedScrollingEnabled(false);
@@ -90,10 +92,11 @@ public class ChildActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(name.equals("Workshops")) {
                     new WorkShopTask().execute(position);
-
                 }
-                else{
+                else if(name.equals("Contests")){
                     new ContestsTask().execute(position);
+                }else if(name.equals("Schedule")){
+
                 }
             }
 

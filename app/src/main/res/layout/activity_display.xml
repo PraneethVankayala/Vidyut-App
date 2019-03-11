@@ -62,24 +62,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:visibility="gone"
-                        android:id="@+id/register"
-                        />
-
                     <TextView
                         android:id="@+id/dep"
-                        android:paddingRight="10dp"
-                        android:paddingLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/newcolor"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:visibility="gone"
                         tools:ignore="NotSibling" />
 
                 </RelativeLayout>
@@ -102,6 +95,7 @@
 
                     <TextView
                         android:id="@+id/venue"
+                        android:paddingTop="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
@@ -128,6 +122,7 @@
                     <TextView
                         android:id="@+id/fee"
                         android:layout_width="wrap_content"
+                        android:paddingTop="2dp"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
@@ -156,17 +151,27 @@
                         android:id="@+id/date"
                         android:lines="3"
                         android:layout_width="wrap_content"
+                        android:paddingTop="2dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="110dp" />
 
                 </RelativeLayout>
 
+                <Button
+                    android:id="@+id/register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:text="Register"
+                    android:visibility="visible" />
 
                 <View
                     android:id="@+id/divider2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:paddingTop="10dp"
                     android:background="?android:attr/listDivider" />
 
                 <TextView

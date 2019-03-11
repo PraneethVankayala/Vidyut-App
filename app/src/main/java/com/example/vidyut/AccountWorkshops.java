@@ -55,7 +55,7 @@ public class AccountWorkshops extends Fragment {
         protected List<Registration> doInBackground(Void... voids) {
             List<Registration> registrations = new ArrayList<>();
 
-            Call<List<Registration>> call = apiManager.getRegWorkshops(auth);
+            Call<List<Registration>> call = ApiManager.getRegWorkshops(auth);
             try {
                 registrations = call.execute().body();
 

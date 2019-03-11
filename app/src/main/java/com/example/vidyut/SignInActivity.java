@@ -173,7 +173,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
                 ResponseAuth responseAuth=response.body();
-                try{
+                try{        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+
                     Auth=responseAuth.getAuth();
                     Toast.makeText(getApplicationContext(),responseAuth.getAuth(),Toast.LENGTH_LONG).show();
                 }
