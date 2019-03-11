@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vidyut.CloudMessaging.AppMessage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,7 @@ public class AccountAddons extends Fragment {
             Call<List<MyOrder>> call2=apiManager.getorder(auth);
             try {
                 order=call2.execute().body();
+                AppMessage.subscribetotopic(new ArrayList(order),2);
             } catch (IOException e) {
                 e.printStackTrace();
             }

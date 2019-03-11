@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +17,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vidyut.CloudMessaging.AppMessage;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 
 import retrofit2.Call;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class AccountWorkshops extends Fragment {
     ApiManager apiManager = new ApiManager();
@@ -57,9 +64,12 @@ public class AccountWorkshops extends Fragment {
         protected List<Registration> doInBackground(Void... voids) {
             List<Registration> registrations = new ArrayList<>();
 
+
             Call<List<Registration>> call = ApiManager.getRegWorkshops(auth);
             try {
                 registrations = call.execute().body();
+                //For Subscription
+                AppMessage.subscribetotopic(new ArrayList(registrations),1);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -69,6 +79,7 @@ public class AccountWorkshops extends Fragment {
 
             return registrations;
         }
+
 
 
         @Override
