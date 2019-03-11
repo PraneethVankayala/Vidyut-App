@@ -88,12 +88,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                    updateUI(GoogleSignInAccount);
                 }
                 else{
-                    //mGoogleSignInClient.signOut();
-                   Bundle bu = new Bundle();
-                   bu.putString("token",token);
-                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
-                   i.putExtras(bu);
-                   startActivity(i);
+                    mGoogleSignInClient.signOut();
+//                   Bundle bu = new Bundle();
+//                   bu.putString("token",token);
+//                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
+//                   i.putExtras(bu);
+//                   startActivity(i);
                 }
 
             }
