@@ -23,5 +23,6 @@
     <string name="our_sponsors">Our Sponsors:</string>
     <string name="student_partner">Student Partner</string>
     <string name="digital_partner">Digital Partner</string>
+    <string name="BannerUrl">https://vidyut.amrita.edu/static/images/banners/banner</string>
 
 </resources>

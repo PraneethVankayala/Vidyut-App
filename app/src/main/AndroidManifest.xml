@@ -23,14 +23,18 @@
         <activity
             android:name=".ChildActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <activity android:name=".SignInActivity" />
         <service android:name=".CloudMessaging.AppMessage">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

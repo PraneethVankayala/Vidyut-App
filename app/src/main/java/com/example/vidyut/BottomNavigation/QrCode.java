@@ -1,5 +1,8 @@
 package com.example.vidyut.BottomNavigation;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -18,6 +21,8 @@ import com.example.vidyut.Data;
 import com.example.vidyut.R;
 import com.example.vidyut.SignInActivity;
 import com.example.vidyut.User;
+
+import java.net.URI;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,7 +63,8 @@ public class QrCode extends Fragment {
                         textView.setText("V19"+vid);
                     }
                     String url="https://vidyut.amrita.edu/static/images/QR/"+vid+".png";
-                    Glide.with(view.getContext()).load(Uri.parse(url)).into(imageView);
+                        Glide.with(view.getContext()).load(Uri.parse(url)).into(imageView);
+
 
                 } catch (NullPointerException n) {
                     n.printStackTrace();
@@ -75,6 +81,18 @@ public class QrCode extends Fragment {
             }
 
         });
+    }
+
+    private boolean isNetworkAvailable() {
+
+        ConnectivityManager connectivityManager
+
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
     }
 
 }

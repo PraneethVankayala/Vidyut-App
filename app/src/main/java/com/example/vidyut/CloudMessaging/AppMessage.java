@@ -74,9 +74,9 @@ public class AppMessage extends FirebaseMessagingService {
                 ArrayList<Registration> registrations = (ArrayList<Registration>) (List<?>) list;
                 for (Registration r : registrations) {
 
-                    if (r.getTitle() != null) {
+                    if (r.getEid() != 0) {
 
-                        FirebaseMessaging.getInstance().subscribeToTopic(r.getTitle().trim())
+                        FirebaseMessaging.getInstance().subscribeToTopic("Workshop"+String.valueOf(r.getEid()))
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -97,7 +97,7 @@ public class AppMessage extends FirebaseMessagingService {
                                     if (r.getPid() != null) {
                                         Log.d("5555",r.getPid());
 
-                                        FirebaseMessaging.getInstance().subscribeToTopic(r.getPid().trim())
+                                        FirebaseMessaging.getInstance().subscribeToTopic("Addons"+r.getPid().trim())
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
@@ -111,6 +111,27 @@ public class AppMessage extends FirebaseMessagingService {
 
                                     }
                                 }
+                break;
+            case 3:
+                ArrayList<Registration> registration = (ArrayList<Registration>) (List<?>) list;
+                for (Registration r : registration) {
+
+                    if (r.getEid() != 0) {
+
+                        FirebaseMessaging.getInstance().subscribeToTopic("Contests"+String.valueOf(r.getEid()))
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (!task.isSuccessful()) {
+                                            Log.d(TAG, "Finished");
+                                        } else {
+                                            Log.d(TAG, "Error Subscribing Topic");
+                                        }
+                                    }
+                                });
+
+                    }
+                }
                 break;
         }
 

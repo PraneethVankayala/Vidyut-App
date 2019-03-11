@@ -271,7 +271,7 @@ public class ChildActivity extends AppCompatActivity {
             if(workshops.size()!=0) {
                 contest.clear();
                 contest.addAll(workshops);
-                // Toast.makeText(getApplicationContext(), workshops.get(1).getTitle(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), workshops.get(1).getTitle(), Toast.LENGTH_LONG).show();
                 madapter = new ContestAdapter(contest);
                 madapter.notifyDataSetChanged();
                 recyclerView.setAdapter(madapter);

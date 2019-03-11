@@ -47,7 +47,7 @@ public class AccountContests extends Fragment {
             Call<List<Registration>> call = apiManager.getRegContests(auth);
             try {
                 registrations = call.execute().body();
-                AppMessage.subscribetotopic(new ArrayList(registrations),1);
+                AppMessage.subscribetotopic(new ArrayList(registrations),3);
 
             } catch (IOException e) {
                 e.printStackTrace();
