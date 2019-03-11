@@ -56,7 +56,7 @@ public class Display extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         progressBar = findViewById(R.id.progressBar3);
         imageView=findViewById(R.id.displayimage);
-        button = findViewById()
+        button = findViewById(R.id.register);
         txtView1 = findViewById(R.id.name1);
         txtView2 = findViewById(R.id.dep);
         txtView3 = findViewById(R.id.venue);
@@ -184,7 +184,7 @@ public class Display extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Workshops workshop) {
-            Toast.makeText(getApplicationContext(),workshop.getTitle(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),workshop.getTitle(),Toast.LENGTH_SHORT).show();
             Display(workshop);
             super.onPostExecute(workshop);
 
@@ -207,9 +207,7 @@ public class Display extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Contests contests) {
-            Toast.makeText(getApplicationContext(),contests.getTitle(),Toast.LENGTH_SHORT).show();
-            Vid vid=new Vid(String.valueOf(contests.getSuppor()));
-            Toast.makeText(getApplicationContext(),vid.getVid(),Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),contests.getTitle(),Toast.LENGTH_SHORT).show();
             Display2(contests);
             super.onPostExecute(contests);
         }

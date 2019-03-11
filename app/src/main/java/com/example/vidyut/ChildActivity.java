@@ -52,7 +52,7 @@ public class ChildActivity extends AppCompatActivity {
     RecyclerView.Adapter<ChildViewHolder> madapter;
     Spinner spinner;
     String name;
-    int cacheSize = 10 * 1024 * 1024;
+    int cacheSize =(int)(0.3*1024 * 1024);
     Typeface typeface;
 
     @Override
@@ -192,9 +192,11 @@ public class ChildActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Workshops> workshops) {
             if(workshops.size()!=0) {
+                imageView.setVisibility(View.INVISIBLE);
+                textView.setVisibility(View.INVISIBLE);
                 worksho.clear();
                 worksho.addAll(workshops);
-                Toast.makeText(getApplicationContext(), workshops.get(0).getTitle(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), workshops.get(0).getTitle(), Toast.LENGTH_LONG).show();
                 madapter = new ChildAdapter(worksho);
                 madapter.notifyDataSetChanged();
                 recyclerView.setAdapter(madapter);
@@ -209,7 +211,7 @@ public class ChildActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
                 imageView.setVisibility(View.VISIBLE);
                 textView.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(),"Bonda",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Bonda",Toast.LENGTH_LONG).show();
             }
 
         }
@@ -270,9 +272,11 @@ public class ChildActivity extends AppCompatActivity {
             @Override
         protected void onPostExecute(List<Contests> workshops) {
             if(workshops.size()!=0) {
+                imageView.setVisibility(View.INVISIBLE);
+                textView.setVisibility(View.INVISIBLE);
                 contest.clear();
                 contest.addAll(workshops);
-                Toast.makeText(getApplicationContext(), workshops.get(1).getTitle(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), workshops.get(1).getTitle(), Toast.LENGTH_LONG).show();
                 madapter = new ContestAdapter(contest);
                 madapter.notifyDataSetChanged();
                 recyclerView.setAdapter(madapter);
@@ -288,7 +292,7 @@ public class ChildActivity extends AppCompatActivity {
                 imageView.setVisibility(View.VISIBLE);
                 textView.setText("Contests Not Available");
                 textView.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(),"Bonda",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Bonda",Toast.LENGTH_LONG).show();
             }
         }
     }

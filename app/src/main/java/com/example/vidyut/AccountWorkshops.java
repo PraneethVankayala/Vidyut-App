@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -34,6 +37,9 @@ public class AccountWorkshops extends Fragment {
     View view;
     RecyclerView recyclerView;
     List<Registration> wokshopList = new ArrayList<>();
+    TextView textView;
+    LinearLayout linearLayout;
+    Button button;
 
 
     @Nullable
@@ -44,6 +50,9 @@ public class AccountWorkshops extends Fragment {
                 .requestEmail()
                 .build();
         recyclerView = view.findViewById(R.id.workshop_recycler);
+        textView=view.findViewById(R.id.textView2);
+        linearLayout=view.findViewById(R.id.linear2);
+        button=view.findViewById(R.id.reg);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         new MyTask().execute();
         return view;
@@ -71,8 +80,26 @@ public class AccountWorkshops extends Fragment {
 
         @Override
         protected void onPostExecute(List<Registration> registrations) {
-            RegistrationAdapter recyclerViewAdapter = new RegistrationAdapter(registrations);
-            recyclerView.setAdapter(recyclerViewAdapter);
+            if(registrations.size()!=0) {
+                textView.setVisibility(View.GONE);
+                linearLayout.setVisibility(View.GONE);
+                RegistrationAdapter recyclerViewAdapter = new RegistrationAdapter(registrations);
+                recyclerView.setAdapter(recyclerViewAdapter);
+            }
+            else{
+                  textView.setVisibility(View.VISIBLE);
+                  linearLayout.setVisibility(View.VISIBLE);
+                  button.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                          Intent intent=new Intent(getActivity(),ChildActivity.class);
+                          Bundle b=new Bundle();
+                          b.putString("name","Workshops");
+                          intent.putExtras(b);
+                          startActivity(intent);
+                      }
+                  });
+            }
 
         }
 
