@@ -42,8 +42,20 @@ public class Contests {
     String rules;
     @SerializedName("prereq")
     String prereq;
+    @SerializedName("d1beg")
+    String d1beg;
+    @SerializedName("d2beg")
+    String d2beg;
+    @SerializedName("d3beg")
+    String d3beg;
+    @SerializedName("d1end")
+    String d1end;
+    @SerializedName("d2end")
+    String d2end;
+    @SerializedName("d3end")
+    String d3end;
 
-    public Contests(int id, String title, String dept, String about, int p1, int p2, int p3, String shor, int pworth, String d1dur, String d2dur, String d3dur, String venue, int limit, int fee, String incharge, int suppor, String rules, String prereq) {
+    public Contests(int id, String title, String dept, String about, int p1, int p2, int p3, String shor, int pworth, String d1dur, String d2dur, String d3dur, String venue, int limit, int fee, String incharge, int suppor, String rules, String prereq,String d1beg,String d2beg,String d3beg,String d1end,String d2end,String d3end) {
         this.id = id;
         this.title = title;
         this.dept = dept;
@@ -63,6 +75,12 @@ public class Contests {
         this.suppor = suppor;
         this.rules = rules;
         this.prereq = prereq;
+        this.d1beg=d1beg;
+        this.d2beg=d2beg;
+        this.d3beg=d3beg;
+        this.d1end=d1end;
+        this.d2end=d2end;
+        this.d3end=d3end;
     }
 
     public int getId() {
@@ -139,5 +157,29 @@ public class Contests {
 
     public String getPrereq() {
         return prereq;
+    }
+
+    public String getD1beg() {
+        return d1beg;
+    }
+
+    public String getD2beg() {
+        return d2beg;
+    }
+
+    public String getD3beg() {
+        return d3beg;
+    }
+
+    public String getD1end() {
+        return d1end;
+    }
+
+    public String getD2end() {
+        return d2end;
+    }
+
+    public String getD3end() {
+        return d3end;
     }
 }

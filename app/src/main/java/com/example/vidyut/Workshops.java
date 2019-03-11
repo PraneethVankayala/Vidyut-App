@@ -35,8 +35,24 @@ public class Workshops {
     String d3dur;
     @SerializedName("rmseats")
     int rmseats;
+    @SerializedName("support")
+    int support;
+    @SerializedName("d1beg")
+    String d1big;
+    @SerializedName("d2beg")
+    String d2beg;
+    @SerializedName("d3beg")
+    String d3beg;
+    @SerializedName("d1end")
+    String d1end;
+    @SerializedName("d2end")
+    String d2end;
+    @SerializedName("d3end")
+    String d3end;
+    @SerializedName("registered")
+    boolean registered;
 
-    public Workshops(int id, String title, String plink, String sh, String about, String org, String venue, int department, int fee, String rules, int seats, String prereq, String d1dur, String d2dur, String d3dur, int rmseats) {
+    public Workshops(int id, String title, String plink, String sh, String about, String org, String venue, int department, int fee, String rules, int seats, String prereq, String d1dur, String d2dur, String d3dur, int rmseats, int support, String d1big, String d2beg, String d3beg, String d1end, String d2end, String d3end, boolean registered) {
         this.id = id;
         this.title = title;
         this.plink = plink;
@@ -53,6 +69,14 @@ public class Workshops {
         this.d2dur = d2dur;
         this.d3dur = d3dur;
         this.rmseats = rmseats;
+        this.support = support;
+        this.d1big = d1big;
+        this.d2beg = d2beg;
+        this.d3beg = d3beg;
+        this.d1end = d1end;
+        this.d2end = d2end;
+        this.d3end = d3end;
+        this.registered = registered;
     }
 
     public int getId() {
@@ -83,7 +107,9 @@ public class Workshops {
         return venue;
     }
 
-    public String getDepartment() { return Integer.toString(department); }
+    public int getDepartment() {
+        return department;
+    }
 
     public int getFee() {
         return fee;
@@ -93,7 +119,9 @@ public class Workshops {
         return rules;
     }
 
-    public String getSeats() { return Integer.toString(seats); }
+    public int getSeats() {
+        return seats;
+    }
 
     public String getPrereq() {
         return prereq;
@@ -111,8 +139,39 @@ public class Workshops {
         return d3dur;
     }
 
-
     public int getRmseats() {
         return rmseats;
+    }
+
+    public int getSupport() {
+        return support;
+    }
+
+    public String getD1big() {
+        return d1big;
+    }
+
+    public String getD2beg() {
+        return d2beg;
+    }
+
+    public String getD3beg() {
+        return d3beg;
+    }
+
+    public String getD1end() {
+        return d1end;
+    }
+
+    public String getD2end() {
+        return d2end;
+    }
+
+    public String getD3end() {
+        return d3end;
+    }
+
+    public boolean isRegistered() {
+        return registered;
     }
 }

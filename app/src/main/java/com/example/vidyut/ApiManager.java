@@ -2,6 +2,7 @@ package com.example.vidyut;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -10,11 +11,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiManager {
 
     private static Api service;
+    public ApiManager(OkHttpClient okHttpClient){
+        Retrofit retrofit=new Retrofit.Builder().baseUrl(Api.BASE_URL).addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build();
+        service=retrofit.create(Api.class);
+
+    }
+
     public ApiManager(){
         Retrofit retrofit=new Retrofit.Builder().baseUrl(Api.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         service=retrofit.create(Api.class);
 
     }
+
 
     public void createId(AuthToken authToken, Callback<ResponseAuth> callback){
         Call<ResponseAuth> userCall = service.createId(authToken);

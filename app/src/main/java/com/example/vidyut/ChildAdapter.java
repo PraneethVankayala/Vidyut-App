@@ -39,7 +39,6 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildViewHolder> {
             String desc=workshops.get(position).getSh();
             int fee=workshops.get(position).getFee();
             int id=workshops.get(position).getId();
-            String dept=workshops.get(position).getDepartment();
                 holder.textView.setText(title);
                 holder.description.setText(desc);
 //                holder.availability.setVisibility(View.GONE);
