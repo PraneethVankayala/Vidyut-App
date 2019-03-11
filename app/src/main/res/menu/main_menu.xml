@@ -4,6 +4,7 @@
     <item
         android:id="@+id/item"
         android:title="SignOut"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_exit"
         ></item>
 </menu>
