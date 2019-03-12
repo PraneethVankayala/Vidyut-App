@@ -40,26 +40,6 @@
             android:text="@string/about_vidyut"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="@color/colorPrimaryDark"/>
-
-        <ImageView
-            android:id="@+id/amrita_logo"
-            android:layout_width="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/amrita2"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/amrita_des"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle" />
 
         <View
             android:layout_width="match_parent"

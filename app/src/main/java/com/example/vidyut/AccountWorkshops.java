@@ -62,7 +62,7 @@ public class AccountWorkshops extends Fragment {
 
     private void signOut() {
         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
-        mGoogleSignInClient.signOut().addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
+        mGoogleSignInClient.signOut().addOnCompleteListener((getActivity()), new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Intent intent=new Intent(getContext(),SignInActivity.class);

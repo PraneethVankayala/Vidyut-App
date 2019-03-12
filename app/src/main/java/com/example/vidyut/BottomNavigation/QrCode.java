@@ -102,14 +102,19 @@ public class QrCode extends Fragment {
          @Override
          protected void onPostExecute(User user) {
              String vid = user.getDatas().getVid();
-             if(vid.length()==3){
-                 textView.setText("V190"+vid);
+             try{
+                 if(vid.length()==3){
+                     textView.setText("V190"+vid);
+                 }
+                 else{
+                     textView.setText("V19"+vid);
+                 }
+                 String url="https://vidyut.amrita.edu/static/images/QR/"+vid+".png";
+                 Glide.with(view.getContext()).load(Uri.parse(url)).diskCacheStrategy(DiskCacheStrategy.DATA).into(imageView);
+
+             }catch (NullPointerException ne){
+
              }
-             else{
-                 textView.setText("V19"+vid);
-             }
-             String url="https://vidyut.amrita.edu/static/images/QR/"+vid+".png";
-             Glide.with(view.getContext()).load(Uri.parse(url)).diskCacheStrategy(DiskCacheStrategy.DATA).into(imageView);
 
              super.onPostExecute(user);
          }

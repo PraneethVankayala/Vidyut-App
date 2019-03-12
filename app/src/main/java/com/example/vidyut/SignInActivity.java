@@ -151,8 +151,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
                 @Override
                 public void onFailure(Call<ResponseAuth> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(),
-                            "Error is " + t.getMessage()
+                            "Unable to Login"
                             , Toast.LENGTH_LONG).show();
                 }
             });
@@ -186,9 +187,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onFailure(Call<ResponseAuth> call, Throwable t) {
-                mGoogleSignInClient.signOut();
+                //mGoogleSignInClient.signOut();
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(),
-                        "Error is " + t.getMessage()
+                        "Unable to Login"
                         , Toast.LENGTH_LONG).show();
             }
         });

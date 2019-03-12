@@ -75,17 +75,20 @@ public class Home extends Fragment {
 
             switch (i) {
                 case 0:
-                    sliderView.setImageDrawable(R.drawable.ic_launcher_background);
+                    sliderView.setImageDrawable(R.drawable.imagenew);
+                    sliderView.setDescription("Breaking The Stereotypes");
                     break;
                 case 1:
-                    sliderView.setImageUrl("https://images.pexels.com/jCgvhdbjlcbvbjn");
+                    sliderView.setImageDrawable(R.drawable.workshops);
+                    sliderView.setDescription("25+ Workshops");
                     break;
                 case 2:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+                    sliderView.setImageDrawable(R.drawable.compettion);
+                    sliderView.setDescription("30+ Competitions");
                     break;
                 case 3:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-                    break;
+                    sliderView.setImageDrawable(R.drawable.proshownew);
+                    sliderView.setDescription("Proshows");
             }
 
             sliderView.setImageScaleType(ImageView.ScaleType.CENTER_CROP);

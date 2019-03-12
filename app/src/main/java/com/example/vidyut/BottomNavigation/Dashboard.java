@@ -151,6 +151,12 @@ public class Dashboard extends Fragment {
             if(vid.length()==3){
                 s="V190"+vid;
             }
+            else if(vid.length()==2){
+                s="V1900"+vid;
+            }
+            else if(vid.length()==1){
+                s="V19000"+vid;
+            }
             else{
                 s="V19"+vid;
             }

@@ -27,14 +27,17 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
         View view;
         view = inflater.inflate(R.layout.edu_fragment,null);
         Spinner sp = view.findViewById(R.id.college);
+        Spinner course=view.findViewById(R.id.spinner);
+        Spinner major=view.findViewById(R.id.spinner2);
         String[] items = new String[]{"Select","AmritaViswaVidhyapeetham","Donbosko"};
+        String[] courses=new String[]{"BTech","BArch","BEng","BSc","BDes","BBA","BBA","BCA","MTech","MArch","MEng","MSc","MBA","MCA","MEd","MBBS","BDS","BA","MA","Others"};
+        String[] branch=new String[]{"Computer Science","Computer Engineering","Mathematics","Biology","Physics","Chemistry","Civil Engineering","Mechanical Engineering","Electrical Engineering","Electrical and Electronics Engineering","Electrical and Communications Engineering","Biotechnology","Business","Social Work","Others"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> courseadapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, courses);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(adapter);
         sp.setOnItemSelectedListener(this);
         CheckBox ch = view.findViewById(R.id.checkBox);
-        editText1 = view.findViewById(R.id.courses);
-        editText2 = view.findViewById(R.id.major);
         editText4 = view.findViewById(R.id.institution);
         textView = view.findViewById(R.id.textView3);
         editText5 = view.findViewById(R.id.year);
@@ -57,12 +60,11 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
         ((EditProfileActivity)getActivity()).next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                course = editText1.getText().toString();
-                major = editText2.getText().toString().trim();
+
                 institution = editText4.getText().toString().trim();
                 try {
                     year = Integer.valueOf(editText5.getText().toString().trim());
-                    ((EditProfileActivity)getActivity()).details(course,major,college,institution,year);
+                    //((EditProfileActivity)getActivity()).details(course,major,college,institution,year);
                 }catch (Exception e){
                     Toast.makeText(getContext(),"Input all details",Toast.LENGTH_LONG).show();
                 }
