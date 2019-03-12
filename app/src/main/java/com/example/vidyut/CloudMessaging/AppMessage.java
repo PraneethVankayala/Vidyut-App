@@ -14,7 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.example.vidyut.Model.NotificationData;
+import com.example.vidyut.NotificationData;
 import com.example.vidyut.MyOrder;
 import com.example.vidyut.ObjectSerializer;
 import com.example.vidyut.R;
