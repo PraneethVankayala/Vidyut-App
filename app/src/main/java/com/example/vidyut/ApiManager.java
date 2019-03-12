@@ -82,4 +82,9 @@ public class ApiManager {
         eduDetailsCall.enqueue(eduDetailsCallback);
     }
 
+    public void getClgList(Callback<List<ClgList>> clg){
+        Call<List<ClgList>> getClgListdet = service.getClgList();
+        getClgListdet.enqueue(clg);
+    }
+
 }

@@ -61,6 +61,7 @@ public interface Api {
                                     @Field("institution") String institution,
                                     @Field("year") int year);
 
-
+    @GET("college/list")
+    Call<List<ClgList>> getClgList();
 
 }
