@@ -18,7 +18,7 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
 
     EditText editText1,editText2,editText3,editText4,editText5;
     TextView textView;
-    String course,major,institution;
+    String cour,maj,institution;
     int year,college;
 
     @Nullable
@@ -34,8 +34,33 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
         String[] branch=new String[]{"Computer Science","Computer Engineering","Mathematics","Biology","Physics","Chemistry","Civil Engineering","Mechanical Engineering","Electrical Engineering","Electrical and Electronics Engineering","Electrical and Communications Engineering","Biotechnology","Business","Social Work","Others"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         ArrayAdapter<String> courseadapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, courses);
+        ArrayAdapter<String> majoradapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, branch);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(adapter);
+        course.setAdapter(courseadapter);
+        major.setAdapter(majoradapter);
+        course.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cour=courses[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        major.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                maj=branch[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         sp.setOnItemSelectedListener(this);
         CheckBox ch = view.findViewById(R.id.checkBox);
         editText4 = view.findViewById(R.id.institution);
@@ -64,7 +89,7 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
                 institution = editText4.getText().toString().trim();
                 try {
                     year = Integer.valueOf(editText5.getText().toString().trim());
-                    //((EditProfileActivity)getActivity()).details(course,major,college,institution,year);
+                    ((EditProfileActivity)getActivity()).details(cour,maj,college,institution,year);
                 }catch (Exception e){
                     Toast.makeText(getContext(),"Input all details",Toast.LENGTH_LONG).show();
                 }
