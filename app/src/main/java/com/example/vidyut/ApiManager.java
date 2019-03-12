@@ -32,9 +32,13 @@ public class ApiManager {
         userCall.enqueue(callback);
     }
 
-    public void getUser(String authori,Callback<User> userCallback){
+    public Call getUser(String authori){
         Call<User> userCall = service.getUser(authori);
-        userCall.enqueue(userCallback);
+        return userCall;
+    }
+    public void getUser(String authori,Callback<User> callback){
+        Call<User> userCall = service.getUser(authori);
+        userCall.enqueue(callback);
     }
 
     public static Call getRegWorkshops(String auth){
