@@ -46,7 +46,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 .requestEmail()
                 .requestIdToken(getString(R.string.server_client_id))
                 .build();
-
          mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
     }
@@ -114,8 +113,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+        startActivity(intent);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

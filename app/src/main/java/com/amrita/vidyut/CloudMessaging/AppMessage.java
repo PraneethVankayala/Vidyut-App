@@ -29,6 +29,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+
 import static android.support.constraint.Constraints.TAG;
 
 public class AppMessage extends FirebaseMessagingService {
@@ -149,35 +151,17 @@ public class AppMessage extends FirebaseMessagingService {
 
     }
 
-    public ArrayList<NotificationData> getNotificatonData(){
-        SharedPreferences prefs = getSharedPreferences("Vidyut", Context.MODE_PRIVATE);
-
-        try {
-            return  (ArrayList<NotificationData>) ObjectSerializer.deserialize(prefs.getString("Notification", ObjectSerializer.serialize(new ArrayList<NotificationData>())));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 
     public void addTask(NotificationData t) {
-        ArrayList<NotificationData> data ;
-        data = getNotificatonData();
-        if (null == getNotificatonData()) {
-            data = new ArrayList<NotificationData>();
-        }
-        data.add(t);
-
-        // save the task list to preference
-        SharedPreferences prefs = getSharedPreferences("Vidyut", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        try {
-            editor.putString("Notification", ObjectSerializer.serialize(data));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        editor.apply();
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        NotificationData realmmessage = realm.createObject(NotificationData.class);
+        realmmessage.setDesc(t.getDesc());
+        realmmessage.setImage(t.getImage());
+        realmmessage.setText(t.getText());
+        realmmessage.setTimeago(t.getTimeago());
+        realm.commitTransaction();
     }
 
 }
