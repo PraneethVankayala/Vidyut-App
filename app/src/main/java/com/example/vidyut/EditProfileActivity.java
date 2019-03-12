@@ -16,10 +16,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     String token;
+    Details details;
+    EduDetails eduDetails;
     private static final String TAG = "hii";
     ApiManager apiManager=new ApiManager();
-    String fname,lname,phno,course,major,college,institution;
-    int sex,year;
+    String fname,lname,phno,course,major,institution;
+    int sex,year,college;
     Button next,prev;
 
     @Override
@@ -28,6 +30,8 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         Bundle b = getIntent().getExtras();
         token = b.getString("token");
+        Log.i("This is token",token);
+        Toast.makeText(getApplicationContext(),token,Toast.LENGTH_SHORT).show();
         loadFragment(new frame());
         next = findViewById(R.id.next);
         prev = findViewById(R.id.prev);
@@ -39,17 +43,22 @@ public class EditProfileActivity extends AppCompatActivity {
         this.lname=lname;
         this.phno=phno;
         this.sex=sex;
+        Toast.makeText(getApplicationContext(),"hgg"+fname+lname+phno+sex,Toast.LENGTH_SHORT).show();
+        details=new Details(fname,lname,phno,sex);
+        Toast.makeText(getApplicationContext(),"hii"+details.getName()+details.getLname()+details.getPhnumber()+details.getGender(),Toast.LENGTH_SHORT).show();
         loadFragment(new edu());
     }
 
-    public void details(String course,String major,String college,String institution,int year){
+    public void details(String course,String major,int college,String institution,int year){
         this.course = course;
         this.major = major;
         this.college = college;
         this.institution = institution;
         this.year = year;
-//        setData();
-//        setEduData();
+        eduDetails=new EduDetails(course,major,college,institution,year);
+        Toast.makeText(getApplicationContext(),eduDetails.college+eduDetails.course+eduDetails.major+eduDetails.institution,Toast.LENGTH_SHORT).show();
+        setData();
+        setEduData();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
     }
@@ -65,45 +74,35 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void setData(){
-        //Toast.makeText(getApplicationContext(),"Success1",Toast.LENGTH_SHORT).show();
-        apiManager.editDetails(token,fname,lname,phno,sex,new Callback<Details>() {
-
+        apiManager.editDetails(token,details,new Callback<ResponseDet>() {
             @Override
-            public void onResponse(Call<Details> call, Response<Details> response) {
-                //Toast.makeText(getApplicationContext(),"Success2",Toast.LENGTH_SHORT).show();
-                Details details = response.body();
-                okhttp3.Response jspn=response.raw();
-                //Toast.makeText(getApplicationContext(),jspn.toString(),Toast.LENGTH_LONG).show();
-                if(response.isSuccessful()) {
-                    // showResponse(response.body().toString());
-                  //  Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_LONG).show();
-                    //Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "post submitted to API." + response.body().toString());
-                }
+            public void onResponse(Call<ResponseDet> call, Response<ResponseDet> response) {
+                ResponseDet details = response.body();
+                Toast.makeText(getApplicationContext(),"set"+details.getMessage(),Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "post submitted to API." + response.body().toString());
             }
-
             @Override
-            public void onFailure(Call<Details> call, Throwable t) {
+            public void onFailure(Call<ResponseDet> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),
                         "Error is " + t.getMessage()
                         , Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     public void setEduData(){
-        apiManager.editEduDetails(token,course, major, college, institution,year, new Callback<EduDetails>() {
+        apiManager.editEduDetails(token,eduDetails, new Callback<ResponseDet>() {
             @Override
-            public void onResponse(Call<EduDetails> call, Response<EduDetails> response) {
-                if(response.isSuccessful()) {
+            public void onResponse(Call<ResponseDet> call, Response<ResponseDet> response) {
                     // showResponse(response.body().toString());
+                    ResponseDet responseDet=response.body();
+                    Toast.makeText(getApplicationContext(),"setEdu"+responseDet.getMessage(),Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "post submitted to API." + response.body().toString());
-                }
+
             }
 
             @Override
-            public void onFailure(Call<EduDetails> call, Throwable t) {
+            public void onFailure(Call<ResponseDet> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),
                         "Error is " + t.getMessage()
                         , Toast.LENGTH_LONG).show();

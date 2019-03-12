@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 textView.setText("VIDYUT");
                 textView.setTextColor(getResources().getColor(R.color.colorPrimary));
 
-       ActionBar ab = getSupportActionBar();
+        ActionBar ab = getSupportActionBar();
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(textView);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
         ab.setBackgroundDrawable(colorDrawable);
-          getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);

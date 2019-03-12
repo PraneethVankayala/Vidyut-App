@@ -10,6 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.vidyut.AuthToken;
+import com.example.vidyut.ResponseAuth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -88,12 +91,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                    updateUI(GoogleSignInAccount);
                 }
                 else{
-                    mGoogleSignInClient.signOut();
-//                   Bundle bu = new Bundle();
-//                   bu.putString("token",token);
-//                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
-//                   i.putExtras(bu);
-//                   startActivity(i);
+                    //mGoogleSignInClient.signOut();
+                    token=auth;
+                   Bundle bu = new Bundle();
+                   bu.putString("token",token);
+                   Intent i = new Intent(SignInActivity.this,EditProfileActivity.class);
+                   i.putExtras(bu);
+                   startActivity(i);
                 }
 
             }
@@ -113,7 +117,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

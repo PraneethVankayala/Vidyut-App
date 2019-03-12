@@ -13,7 +13,7 @@ public class Details {
     @SerializedName("sex")
     int gender;
     @SerializedName("detailscomp")
-    String dtcmp;
+    boolean dtcmp;
 
     public String getName() {
         return name;
@@ -44,6 +44,13 @@ public class Details {
     }
 
     public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public Details(String name, String lname, String phnumber, int gender) {
+        this.name = name;
+        this.lname = lname;
+        this.phnumber = phnumber;
         this.gender = gender;
     }
 

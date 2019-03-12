@@ -3,6 +3,7 @@ package com.example.vidyut;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -45,21 +46,12 @@ public interface Api {
     Call<Contests> getContestDetails(@Path("Id") int id);
 
     @PUT("farer/user/details")
-    @FormUrlEncoded
-    Call<Details> editDetails(@Header("Authorization") String authorization,
-                              @Field("fname") String fname,
-                              @Field("lname") String lname,
-                              @Field("phno") String phno,
-                              @Field("sex") int sex);
+    Call<ResponseDet> editDetails(@Header("Authorization") String authorization,
+                               @Body Details details);
 
     @PUT("farer/user/education")
-    @FormUrlEncoded
-    Call<EduDetails> editEduDetails(@Header("Authorization") String authorization,
-                                    @Field("course") String course,
-                                    @Field("major") String major,
-                                    @Field("college") String college,
-                                    @Field("institution") String institution,
-                                    @Field("year") int year);
+    Call<ResponseDet> editEduDetails(@Header("Authorization") String authorization,
+                                    @Body EduDetails eduDetails);
 
     @GET("college/list")
     Call<List<ClgList>> getClgList();

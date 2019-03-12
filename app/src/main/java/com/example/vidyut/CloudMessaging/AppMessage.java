@@ -95,6 +95,7 @@ public class AppMessage extends FirebaseMessagingService {
                             for (MyOrder r : order) {
 
                                     if (r.getPid() != null) {
+                                        Log.d("5555",r.getPid());
 
                                         FirebaseMessaging.getInstance().subscribeToTopic("Addons"+r.getPid().trim())
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {

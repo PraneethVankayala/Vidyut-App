@@ -41,7 +41,7 @@ public class ContestRegAdapter extends RecyclerView.Adapter<ChildViewHolder> {
         childViewHolder.description.setText(desc);
     //    String see="Rs:"+String.valueOf(fee);
     //    childViewHolder.availability.setText(see);
-        String url="https://devhub.amblygon.org/static/images/contests/"+id+"a.jpg";
+        String url="https://vidyut.amrita.edu/static/images/contests/"+id+"a.jpg";
         Glide.with(viewGroup.getContext()).load(Uri.parse(url)).into(childViewHolder.imageView);
         childViewHolder.layout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,11 +9,13 @@ public class EduDetails {
   @SerializedName("major")
     String major;
   @SerializedName("college")
-    String college;
+    int college;
   @SerializedName("institution")
     String institution;
   @SerializedName("year")
     int year;
+  @SerializedName("educomp")
+    boolean edcomp;
 
     public String getCourse() {
         return course;
@@ -23,7 +25,7 @@ public class EduDetails {
         return major;
     }
 
-    public String getCollege() {
+    public int getCollege() {
         return college;
     }
 
@@ -39,12 +41,20 @@ public class EduDetails {
         this.major = major;
     }
 
-    public void setCollege(String college) {
+    public void setCollege(int college) {
         this.college = college;
     }
 
     public void setInstitution(String institution) {
         this.institution = institution;
+    }
+
+    public EduDetails(String course, String major, int college, String institution, int year) {
+        this.course = course;
+        this.major = major;
+        this.college = college;
+        this.institution = institution;
+        this.year = year;
     }
 
     @Override

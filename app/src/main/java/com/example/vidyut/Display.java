@@ -69,8 +69,6 @@ public class Display extends AppCompatActivity {
         txtView13 = findViewById(R.id.fprize);
         txtView14 = findViewById(R.id.secprize);
         txtView15 = findViewById(R.id.thdprize);
-        cname=findViewById(R.id.cname);
-        cphno=findViewById(R.id.cphno);
         vi = findViewById(R.id.divider2);
 
         Intent intent = getIntent();

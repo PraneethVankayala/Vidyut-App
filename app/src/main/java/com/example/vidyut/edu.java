@@ -18,8 +18,8 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
 
     EditText editText1,editText2,editText3,editText4,editText5;
     TextView textView;
-    String course,major,college,institution;
-    int year;
+    String course,major,institution;
+    int year,college;
 
     @Nullable
     @Override
@@ -86,12 +86,11 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
             case 0:
                 break;
             case 1:
-                college = "AmritaViswaVidhyapeetham";
+                college =1;
                 break;
             case 2:
-                college = "Donbosko";
+                college = 2;
                 break;
-
         }
     }
 
