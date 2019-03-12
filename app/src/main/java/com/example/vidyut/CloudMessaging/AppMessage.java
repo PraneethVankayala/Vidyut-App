@@ -1,10 +1,12 @@
 package com.example.vidyut.CloudMessaging;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -12,8 +14,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.example.vidyut.Home;
+import com.example.vidyut.Model.NotificationData;
 import com.example.vidyut.MyOrder;
+import com.example.vidyut.ObjectSerializer;
 import com.example.vidyut.R;
 import com.example.vidyut.Registration;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,6 +55,13 @@ public class AppMessage extends FirebaseMessagingService {
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);
+
+        NotificationData data = new NotificationData();
+        data.setText(remoteMessage.getNotification().getTitle());
+        data.setDesc(remoteMessage.getNotification().getBody());
+        data.setImage(remoteMessage.getData().get("Image"));
+        data.setTimeago(remoteMessage.getSentTime());
+        addTask(data);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -92,25 +102,24 @@ public class AppMessage extends FirebaseMessagingService {
                 }
                 break;
             case 2 :     ArrayList<MyOrder> order = (ArrayList<MyOrder>) (List<?>) list;
-                            for (MyOrder r : order) {
+                for (MyOrder r : order) {
 
-                                    if (r.getPid() != null) {
-                                        Log.d("5555",r.getPid());
+                    if (r.getPid() != null) {
 
-                                        FirebaseMessaging.getInstance().subscribeToTopic("Addons"+r.getPid().trim())
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (!task.isSuccessful()) {
-                                                            Log.d(TAG, "Finished");
-                                                        } else {
-                                                            Log.d(TAG, "Error Subscribing Topic");
-                                                        }
-                                                    }
-                                                });
-
+                        FirebaseMessaging.getInstance().subscribeToTopic("Addons"+r.getPid().trim())
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (!task.isSuccessful()) {
+                                            Log.d(TAG, "Finished");
+                                        } else {
+                                            Log.d(TAG, "Error Subscribing Topic");
+                                        }
                                     }
-                                }
+                                });
+
+                    }
+                }
                 break;
             case 3:
                 ArrayList<Registration> registration = (ArrayList<Registration>) (List<?>) list;
@@ -136,6 +145,37 @@ public class AppMessage extends FirebaseMessagingService {
         }
 
 
+    }
+
+    public ArrayList<NotificationData> getNotificatonData(){
+        SharedPreferences prefs = getSharedPreferences("Vidyut", Context.MODE_PRIVATE);
+
+        try {
+            return  (ArrayList<NotificationData>) ObjectSerializer.deserialize(prefs.getString("Notification", ObjectSerializer.serialize(new ArrayList<NotificationData>())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public void addTask(NotificationData t) {
+        ArrayList<NotificationData> data ;
+        data = getNotificatonData();
+        if (null == getNotificatonData()) {
+            data = new ArrayList<NotificationData>();
+        }
+        data.add(t);
+
+        // save the task list to preference
+        SharedPreferences prefs = getSharedPreferences("Vidyut", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        try {
+            editor.putString("Notification", ObjectSerializer.serialize(data));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        editor.apply();
     }
 
 }
