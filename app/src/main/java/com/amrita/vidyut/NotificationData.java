@@ -2,7 +2,9 @@ package com.amrita.vidyut;
 
 import android.graphics.drawable.Drawable;
 
-public class NotificationData {
+import io.realm.RealmObject;
+
+public class NotificationData extends RealmObject {
     private String text;
     private String image;
     private String desc;

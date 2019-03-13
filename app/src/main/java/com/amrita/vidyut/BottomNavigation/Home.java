@@ -44,6 +44,8 @@ import com.smarteist.autoimageslider.SliderView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+
 import static android.support.constraint.Constraints.TAG;
 
 public class Home extends Fragment {
@@ -77,6 +79,14 @@ public class Home extends Fragment {
         NotificationData data = new NotificationData();
         data.setText("hi");
         data.setDesc("ji");
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        NotificationData realmmessage = realm.createObject(NotificationData.class);
+        realmmessage.setDesc("hub");
+        realmmessage.setImage("https://vidyut.amrita.edu/static/images/workshops/8a.jpg");
+        realmmessage.setText("hhjs");
+        realmmessage.setTimeago(System.currentTimeMillis());
+        realm.commitTransaction();
         data.setImage("https://vidyut.amrita.edu/static/images/workshops/8a.jpg");
         data.setTimeago(System.currentTimeMillis());
         addTask(data);
