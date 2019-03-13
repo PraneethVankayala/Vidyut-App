@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:659545475106:android:1d6e6af75a35e43f",
+        "mobilesdk_app_id": "1:659545475106:android:1409606acef4e57e",
         "android_client_info": {
-          "package_name": "com.example.vidyut"
+          "package_name": "com.amrita.vidyut"
         }
       },
       "oauth_client": [
