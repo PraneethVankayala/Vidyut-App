@@ -14,6 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class edu extends Fragment implements AdapterView.OnItemSelectedListener {
 
     EditText editText1,editText2,editText3,editText4,editText5;
@@ -27,12 +30,16 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
         View view;
         view = inflater.inflate(R.layout.edu_fragment,null);
         Spinner sp = view.findViewById(R.id.college);
-        String[] items = new String[]{"Select","AmritaViswaVidhyapeetham","Donbosko"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        List<ClgList> list =  ((EditProfileActivity)getActivity()).clg;
+        ArrayList<String> clgs = new ArrayList<String>();
+        clgs.add("Add a new College");
+        for(int i=0;i<list.size();i++){
+            clgs.add(list.get(i).getName().trim());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, clgs);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(adapter);
         sp.setOnItemSelectedListener(this);
-        CheckBox ch = view.findViewById(R.id.checkBox);
         editText1 = view.findViewById(R.id.courses);
         editText2 = view.findViewById(R.id.major);
         editText4 = view.findViewById(R.id.institution);
@@ -40,19 +47,6 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
         editText5 = view.findViewById(R.id.year);
         ((EditProfileActivity)getActivity()).prev.setVisibility(View.VISIBLE);
         ((EditProfileActivity)getActivity()).next.setText("Done");
-
-        ch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(((CheckBox)v).isChecked()){
-                editText4.setVisibility(View.VISIBLE);
-                textView.setVisibility(View.VISIBLE);
-                }else {
-                    editText4.setVisibility(View.GONE);
-                    textView.setVisibility(View.GONE);
-                }
-            }
-        });
 
         ((EditProfileActivity)getActivity()).next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +56,14 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
                 institution = editText4.getText().toString().trim();
                 try {
                     year = Integer.valueOf(editText5.getText().toString().trim());
-                    ((EditProfileActivity)getActivity()).details(course,major,college,institution,year);
                 }catch (Exception e){
                     Toast.makeText(getContext(),"Input all details",Toast.LENGTH_LONG).show();
                 }
-
+                if((!course.isEmpty()) && (!major.isEmpty()) && college != 0 && year != 0){
+                    ((EditProfileActivity)getActivity()).details(course,major,college,institution,year);
+                }else{
+                    Toast.makeText(getContext(),"Input all details",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -82,16 +79,15 @@ public class edu extends Fragment implements AdapterView.OnItemSelectedListener 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (position) {
-            case 0:
-                break;
-            case 1:
-                college =1;
-                break;
-            case 2:
-                college = 2;
-                break;
-        }
+        if(position == 0){
+           editText4.setVisibility(View.VISIBLE);
+           textView.setVisibility(View.VISIBLE);
+           college = 0;
+       }else{
+        college = position;
+            editText4.setVisibility(View.GONE);
+            textView.setVisibility(View.GONE);
+       }
     }
 
     @Override

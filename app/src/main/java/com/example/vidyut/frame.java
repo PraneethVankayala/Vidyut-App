@@ -28,8 +28,7 @@ public class frame extends Fragment implements AdapterView.OnItemSelectedListene
         editText2=view.findViewById(R.id.phno);
         ((EditProfileActivity)getActivity()).next.setText("Next");
         ((EditProfileActivity)getActivity()).prev.setVisibility(View.GONE);
-
-        String[] items = new String[]{"Select","Male","Female","Others"};
+        String[] items = new String[]{"Male","Female","Others"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(adapter);
@@ -42,31 +41,31 @@ public class frame extends Fragment implements AdapterView.OnItemSelectedListene
                     fname = (editText.getText()).toString();
                     lname = editText1.getText().toString().trim();
                     phno = editText2.getText().toString().trim();
-                    ((EditProfileActivity)getActivity()).retrivefrag(fname,lname,phno,sex);
+                    if ((phno.length() == 10) && (!fname.isEmpty()) && (!lname.isEmpty())) {
+                        ((EditProfileActivity) getActivity()).retrivefrag(fname, lname, phno, sex);
+                    }else {
+                     Toast.makeText(getContext(),"INPUT ALL DETAILS",Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }catch (NullPointerException n){
             Toast.makeText(getContext(),"Error is"+n.getMessage(),Toast.LENGTH_LONG).show();
         }
-
         return  view;
-
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                break;
-            case 1:
                 sex = 0;
                 break;
-            case 2:
+            case 1:
                 sex = 1;
                 break;
-            case 3 :
+            case 2:
                 sex = 2;
-
+                break;
         }
     }
 

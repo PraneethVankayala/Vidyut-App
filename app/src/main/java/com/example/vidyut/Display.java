@@ -76,10 +76,12 @@ public class Display extends AppCompatActivity {
         id = bundle.getInt("id");
         int flag = bundle.getInt("flag");
         if(flag == 0) {
-            new DisplayDetails().execute();
+            Workshops workshops= (Workshops) intent.getSerializableExtra("list");
+            Display(workshops);
             back="Workshops";
         }else {
-            new ContestDetails().execute();
+            Contests contests= (Contests) intent.getSerializableExtra("list");
+           Display2(contests);
             back="Contests";
         }
     }
@@ -187,51 +189,6 @@ public class Display extends AppCompatActivity {
         });
         String url="https://vidyut.amrita.edu/static/images/contests/"+contests.getId()+"a.jpg";
         Glide.with(getApplicationContext()).load(Uri.parse(url)).into(imageView);
-    }
-    private class DisplayDetails extends AsyncTask<Void, Void, Workshops> {
-
-
-        @Override
-        protected Workshops doInBackground(Void... voids) {
-            Workshops workshop = null;
-            Call<Workshops> call = apiManager.getWorkshopDetails(id);
-            try {
-                workshop=call.execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return workshop;
-        }
-
-        @Override
-        protected void onPostExecute(Workshops workshop) {
-            //Toast.makeText(getApplicationContext(),workshop.getTitle(),Toast.LENGTH_SHORT).show();
-            Display(workshop);
-            super.onPostExecute(workshop);
-
-        }
-    }
-
-    private class ContestDetails extends AsyncTask<Void,Void,Contests>{
-
-        @Override
-        protected Contests doInBackground(Void... voids) {
-            Contests contest = null;
-            Call<Contests> call = apiManager.getContestDetails(id);
-            try{
-                contest = call.execute().body();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-            return contest;
-        }
-
-        @Override
-        protected void onPostExecute(Contests contests) {
-            //Toast.makeText(getApplicationContext(),contests.getTitle(),Toast.LENGTH_SHORT).show();
-            Display2(contests);
-            super.onPostExecute(contests);
-        }
     }
 
 

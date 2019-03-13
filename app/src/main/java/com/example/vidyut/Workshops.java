@@ -2,7 +2,9 @@ package com.example.vidyut;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Workshops {
+import java.io.Serializable;
+
+public class Workshops implements Serializable {
     @SerializedName("id")
     int id;
     @SerializedName("title")
@@ -79,6 +81,22 @@ public class Workshops {
         this.registered = registered;
     }
 
+    public Workshops(int id, String title, String about, String venue, int department, int fee, String rules, String prereq, String d1big, String d2beg, String d3beg, String d1end, String d2end, String d3end) {
+        this.id = id;
+        this.title = title;
+        this.about = about;
+        this.venue = venue;
+        this.department = department;
+        this.fee = fee;
+        this.rules = rules;
+        this.prereq = prereq;
+        this.d1big = d1big;
+        this.d2beg = d2beg;
+        this.d3beg = d3beg;
+        this.d1end = d1end;
+        this.d2end = d2end;
+        this.d3end = d3end;
+    }
     public int getId() {
         return id;
     }
