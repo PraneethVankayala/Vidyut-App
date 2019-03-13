@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "659545475106",
+    "firebase_url": "https://wander-e5271.firebaseio.com",
+    "project_id": "wander-e5271",
+    "storage_bucket": "wander-e5271.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659545475106:android:1409606acef4e57e",
+        "android_client_info": {
+          "package_name": "com.amrita.vidyut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659545475106-euh5fc4mkja6c9p8nt614hpk7u3p4un3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Zsj0F-DoPT1xCosdl5IDdDHTU8pfm5Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
