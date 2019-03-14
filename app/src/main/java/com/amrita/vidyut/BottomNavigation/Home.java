@@ -73,24 +73,7 @@ public class Home extends Fragment {
         sliderLayout.setScrollTimeInSec(1);
         setSliderViews();
         data();
-        FirebaseMessaging.getInstance().subscribeToTopic("Co");
-        NotificationData data = new NotificationData();
-        data.setText("hi");
-        data.setDesc("ji");
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        NotificationData realmmessage = realm.createObject(NotificationData.class);
-        realmmessage.setDesc("hub");
-        realmmessage.setImage("https://vidyut.amrita.edu/static/images/workshops/8a.jpg");
-        realmmessage.setText("hhjs");
-        realmmessage.setTimeago(System.currentTimeMillis());
-        realm.commitTransaction();
-        data.setImage("https://vidyut.amrita.edu/static/images/workshops/8a.jpg");
-        data.setTimeago(System.currentTimeMillis());
-        addTask(data);
-
-        Toast.makeText(getActivity().getApplicationContext(), String.valueOf(getNotificatonData()),Toast.LENGTH_LONG);
-        FirebaseMessaging.getInstance().subscribeToTopic("Cont")
+        FirebaseMessaging.getInstance().subscribeToTopic("All")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

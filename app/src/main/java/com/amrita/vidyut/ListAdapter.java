@@ -50,7 +50,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.NotificationVi
 
         NotificationData productItems = items.get(i);
 
-        long time = System.currentTimeMillis() - productItems.getTimeago();
+        long time =  productItems.getTimeago();
         DateFormat formatter = new SimpleDateFormat("hh:mm:ss.SSS");
 
         Calendar calendar = Calendar.getInstance();

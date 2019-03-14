@@ -78,12 +78,6 @@ public class Dashboard extends Fragment {
         textView1=view.findViewById(R.id.user_mail);
         textView2=view.findViewById(R.id.vid);
         textView3=view.findViewById(R.id.user_phone);
-        viewPagerAdapter.addFragment(new AccountWorkshops(),"Workshops");
-        viewPagerAdapter.addFragment(new AccountContests(),"Contests");
-        viewPagerAdapter.addFragment(new AccountAddons(),"Addons");
-
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
         return view;
 
     }
@@ -144,6 +138,7 @@ public class Dashboard extends Fragment {
             String lname = user.getDatas().getLname();
             String pic = user.getDatas().getPic();
             String phno = user.getDatas().getPhno();
+            String farer=user.getDatas().getFarer();
             String s;
             //Toast.makeText(getContext(), vid + email, Toast.LENGTH_LONG).show();
             textView.setText(fname+" "+lname);
@@ -164,7 +159,8 @@ public class Dashboard extends Fragment {
             vids=vid;
             textView3.setText(phno);
             Glide.with(view.getContext()).load(Uri.parse(pic)).apply(RequestOptions.circleCropTransform()).into(image);
-            data = new Data(vid, email, fname, lname, pic, d, e, phno);
+            data = new Data(vid, email, fname, lname, pic, d, e, phno,farer);
+            addpager();
 
         } catch (NullPointerException n) {
             n.printStackTrace();
@@ -185,4 +181,14 @@ public class Dashboard extends Fragment {
     }
 
 
+    private void addpager(){
+        if(viewPagerAdapter!=null&&viewPager!=null&&tabLayout!=null) {
+            viewPagerAdapter.addFragment(new AccountWorkshops(), "Workshops");
+            viewPagerAdapter.addFragment(new AccountContests(), "Contests");
+            viewPagerAdapter.addFragment(new AccountAddons(), "Addons");
+
+            viewPager.setAdapter(viewPagerAdapter);
+            tabLayout.setupWithViewPager(viewPager);
+        }
+    }
 }

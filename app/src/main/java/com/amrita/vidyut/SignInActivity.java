@@ -83,8 +83,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 String lname=user.getDatas().getLname();
                 String pic=user.getDatas().getPic();
                 String phno=user.getDatas().getPhno();
+                String farer=user.getDatas().getFarer();
 
-                data=new Data(vid,email,fname,lname,pic,d,e,phno);
+                data=new Data(vid,email,fname,lname,pic,d,e,phno,farer);
 
                if(data.isDetails() && data.isEdu()){
                    updateUI(GoogleSignInAccount);
@@ -113,8 +114,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void signIn() {
-        Intent intent=new Intent(SignInActivity.this,MainActivity.class);
-        startActivity(intent);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

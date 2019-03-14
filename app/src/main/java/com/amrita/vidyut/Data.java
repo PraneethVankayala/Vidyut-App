@@ -37,8 +37,10 @@ public class Data {
     String time;
     @SerializedName("lastseen")
     String lastseen;
+    @SerializedName("farer")
+    String farer;
 
-    public Data(String vid, String email, String fname, String lname, String pic, String course, String major, int s, int year, int college, String institu, String school, String phno, boolean details, boolean edu, String time, String lastseen) {
+    public Data(String vid, String email, String fname, String lname, String pic, String course, String major, int s, int year, int college, String institu, String school, String phno, boolean details, boolean edu, String time, String lastseen,String farer) {
         this.vid = vid;
         this.email = email;
         this.fname = fname;
@@ -55,10 +57,11 @@ public class Data {
         this.details = details;
         this.edu = edu;
         this.time = time;
+        this.farer=farer;
         this.lastseen = lastseen;
     }
 
-    public Data(String vid, String email, String fname, String lname, String pic,boolean details,boolean edu,String phno){
+    public Data(String vid, String email, String fname, String lname, String pic,boolean details,boolean edu,String phno,String farer){
         this.details=details;
         this.edu=edu;
         this.vid=vid;
@@ -67,6 +70,16 @@ public class Data {
         this.lname=lname;
         this.pic=pic;
         this.phno=phno;
+        this.farer=farer;
+    }
+
+
+    public String getFarer() {
+        return farer;
+    }
+
+    public void setFarer(String farer) {
+        this.farer = farer;
     }
 
     public String getVid() {

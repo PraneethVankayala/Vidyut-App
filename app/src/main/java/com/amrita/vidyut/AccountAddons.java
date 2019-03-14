@@ -66,7 +66,6 @@ public class AccountAddons extends Fragment {
         protected void onPostExecute(List<MyOrder> myOrders) {
                AddOnAdapter recyclerViewAdapter = new AddOnAdapter(myOrders);
                recyclerView.setAdapter(recyclerViewAdapter);
-               Toast.makeText(getContext(),myOrders.get(0).getPid(),Toast.LENGTH_SHORT).show();
 
         }
     }
