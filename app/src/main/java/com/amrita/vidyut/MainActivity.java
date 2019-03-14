@@ -26,15 +26,24 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import io.realm.Realm;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInOptions gso;
     Typeface typeface;
+    private NotificationData notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        notification = (NotificationData)
+                getIntent().getSerializableExtra("Notification");
+        if(notification !=null) {
+            addTask(notification);
+        }
+
         TextView textView=new TextView(getApplicationContext());
                 typeface = ResourcesCompat.getFont(this, R.font.frontage_bold);
                 textView.setTypeface(typeface);
@@ -84,6 +93,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void addTask (NotificationData t) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        NotificationData realmmessage = realm.createObject(NotificationData.class);
+        realmmessage.setDesc(t.getDesc());
+        realmmessage.setImage(t.getImage());
+        realmmessage.setText(t.getText());
+        realmmessage.setTimeago(t.getTimeago());
+        realm.commitTransaction();
     }
 
     private boolean loadFragment(Fragment fragment) {

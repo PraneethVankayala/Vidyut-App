@@ -1,5 +1,6 @@
 package com.amrita.vidyut.BottomNavigation;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,12 +46,13 @@ import static android.graphics.Color.BLACK;
 import static android.graphics.Color.WHITE;
 
 public class QrCode extends Fragment {
-    String auth;
-    ImageView imageView;
-    TextView textView;
-    int cacheSize = (int)(0.3 * 1024 * 1024);
-    View view;
-    String str;
+    private String auth;
+    private ImageView imageView;
+    private TextView textView;
+    private int cacheSize = (int)(0.3 * 1024 * 1024);
+    private View view;
+    private String str;
+    private Dialog progress;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -57,11 +60,21 @@ public class QrCode extends Fragment {
         view=inflater.inflate(R.layout.fragment_qrcode,null);
         imageView=view.findViewById(R.id.qrcode);
         textView=view.findViewById(R.id.vidqr);
+        progessdialog(getActivity());
         new QRclass().execute(auth);
 
         return view;
     }
 
+    private void progessdialog(Context mcontext) {
+        progress = new Dialog(mcontext);
+        progress.setCancelable(false);
+        progress.setCanceledOnTouchOutside(false);
+        progress.setContentView(R.layout.dialog_loading);
+        ProgressBar bar = progress.findViewById(R.id.new_post_progress);
+        bar.setVisibility(View.VISIBLE);
+        progress.show();
+    }
      public class QRclass extends AsyncTask<String,Void,User> {
 
          public final static int QRcodeWidth = 500 ;
@@ -130,7 +143,11 @@ public class QrCode extends Fragment {
                      str="V19"+vid;
                  }
                  String farer=user.getDatas().getFarer();
-                 Toast.makeText(getContext(),farer,Toast.LENGTH_SHORT).show();
+                 if(progress!=null){
+                     progress.dismiss();
+                 }
+
+                 Toast.makeText(getContext(),user.getDatas().getVid(),Toast.LENGTH_SHORT).show();
                  Bitmap bitmap;
                  if(farer.isEmpty()){
 

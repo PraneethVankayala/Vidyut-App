@@ -21,13 +21,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.NotificationViewHolder> {
+public class ListAdapter extends
+        RecyclerView.Adapter<ListAdapter.NotificationViewHolder> {
 
     Activity context;
     List<NotificationData> items;
 
 
-    public ListAdapter(Activity mainActivity, ArrayList<NotificationData> dataArrayList) {
+    public ListAdapter(Activity mainActivity,
+                       ArrayList<NotificationData> dataArrayList) {
 
         this.context = mainActivity;
         this.items = dataArrayList;
@@ -36,8 +38,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.NotificationVi
 
 
     @Override
-    public ListAdapter.NotificationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate( R.layout.list_data,parent,false);
+    public ListAdapter.NotificationViewHolder
+    onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.list_data,parent,false);
         NotificationViewHolder ch=new NotificationViewHolder(view);
         return ch;
     }
@@ -45,13 +49,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.NotificationVi
 
 
     @Override
-    public void onBindViewHolder(@NonNull NotificationViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull NotificationViewHolder
+                                         holder, int i) {
 
 
         NotificationData productItems = items.get(i);
 
-        long time =  productItems.getTimeago();
-        DateFormat formatter = new SimpleDateFormat("hh:mm:ss.SSS");
+        long time = System.currentTimeMillis() - productItems.getTimeago();
+        DateFormat formatter = new SimpleDateFormat("hh:mm:ss");
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time);

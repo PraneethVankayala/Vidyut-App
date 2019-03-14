@@ -1,6 +1,7 @@
 package com.amrita.vidyut.BottomNavigation;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,7 @@ import retrofit2.Response;
 public class Dashboard extends Fragment {
     ApiManager apiManager = new ApiManager();
     String auth;
+    private Dialog progress;
     View view;
     Data data;
     public static String vids;
@@ -72,6 +75,9 @@ public class Dashboard extends Fragment {
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         new DetailsVerify().execute();
 
+
+
+        progessdialog(getActivity());
         //add frags
         image=view.findViewById(R.id.imageView2);
         textView=view.findViewById(R.id.user_name);
@@ -81,6 +87,18 @@ public class Dashboard extends Fragment {
         return view;
 
     }
+
+
+    private void progessdialog(Context mcontext) {
+        progress = new Dialog(mcontext);
+        progress.setCancelable(false);
+        progress.setCanceledOnTouchOutside(false);
+        progress.setContentView(R.layout.dialog_loading);
+        ProgressBar bar = progress.findViewById(R.id.new_post_progress);
+        bar.setVisibility(View.VISIBLE);
+        progress.show();
+    }
+
 
     public class DetailsVerify extends AsyncTask<Void,Void,User>{
 
@@ -160,6 +178,9 @@ public class Dashboard extends Fragment {
             textView3.setText(phno);
             Glide.with(view.getContext()).load(Uri.parse(pic)).apply(RequestOptions.circleCropTransform()).into(image);
             data = new Data(vid, email, fname, lname, pic, d, e, phno,farer);
+            if(progress!=null){
+                progress.dismiss();
+            }
             addpager();
 
         } catch (NullPointerException n) {

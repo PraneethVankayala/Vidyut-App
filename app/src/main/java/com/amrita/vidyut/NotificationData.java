@@ -2,9 +2,13 @@ package com.amrita.vidyut;
 
 import android.graphics.drawable.Drawable;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 
-public class NotificationData extends RealmObject {
+public class NotificationData extends RealmObject implements Serializable {
     private String text;
     private String image;
     private String desc;
