@@ -20,6 +20,7 @@ public class AboutVidyut extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_about_vidyut, container, false);
+
         return view;
 
     }

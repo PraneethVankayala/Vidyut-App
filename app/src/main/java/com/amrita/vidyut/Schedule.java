@@ -5,15 +5,17 @@ public class Schedule {
     private String tittle;
     private String desc;
     private String date;
+    private String venue;
     private String time ;
     private Timer timer;
 
-    public Schedule(String tittle, String desc, String date, String time,Timer timer) {
+    public Schedule(String tittle, String desc, String date, String time,Timer timer,String venue) {
         this.tittle = tittle;
         this.desc = desc;
         this.date = date;
         this.time = time;
         this.timer = timer;
+        this.venue = venue;
     }
 
     public Timer getTimer() {
@@ -64,4 +66,11 @@ public class Schedule {
         return timer.getViewtype();
     }
 
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
 }

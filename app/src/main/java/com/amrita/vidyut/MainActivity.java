@@ -149,7 +149,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 setTitle("QrCode");
                 fragment = new QrCode();
                 break;
-
+            case R.id.navigation_schedule:
+                setTitle("Schedule");
+                fragment = new SchedulerActivity();
+                break;
             case R.id.navigation_about:
                 setTitle("About");
                 fragment = new About();

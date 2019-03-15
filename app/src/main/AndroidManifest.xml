@@ -15,10 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MapActivity"
             android:parentActivityName=".MainActivity"></activity>
-        <activity
-            android:name=".SchedulerActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".SignInActivity"
+        <activity android:name=".MainActivity"
             android:screenOrientation="portrait"><intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -40,8 +37,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
         <service android:name=".CloudMessaging.AppMessage">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
