@@ -36,13 +36,15 @@ public class ScheduleCell extends SimpleCell<Schedule,ScheduleCell.ViewHolder> {
         viewHolder.dec.setText(getItem().getDesc());
         viewHolder.date.setText(getItem().getDate());
         viewHolder.time.setText(getItem().getTime());
+        String venue = "Venue : "+getItem().getVenue();
+        viewHolder.venue.setText(venue);
 
 
     }
 
     static class ViewHolder extends SimpleViewHolder {
 
-        private TextView tittle, dec, date, time;
+        private TextView tittle, dec, date, time,venue;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -51,6 +53,7 @@ public class ScheduleCell extends SimpleCell<Schedule,ScheduleCell.ViewHolder> {
             dec = itemView.findViewById(R.id.schedule_short);
             date = itemView.findViewById(R.id.schedule_date);
             time = itemView.findViewById(R.id.schedule_time);
+            venue = itemView.findViewById(R.id.schedule_venue);
         }
 
 
