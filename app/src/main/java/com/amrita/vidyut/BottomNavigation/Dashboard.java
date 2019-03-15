@@ -67,7 +67,7 @@ public class Dashboard extends Fragment {
     ViewPagerAdapter viewPagerAdapter;
     ImageView image;
     int cacheSize = (int)(0.1 * 1024 * 1024);
-    TextView textView,textView1,textView2,textView3;
+    TextView textView12,textView1,textView2,textView3;
 
 
 
@@ -96,17 +96,18 @@ public class Dashboard extends Fragment {
         tabLayout = view.findViewById(R.id.account_tablayout);
         viewPager = view.findViewById(R.id.account_viewpager);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        image=view.findViewById(R.id.imageView2);
+        textView12 = view.findViewById(R.id.user_name);
+        textView1=view.findViewById(R.id.user_mail);
+        textView2=view.findViewById(R.id.vid);
+        textView3=view.findViewById(R.id.user_phone);
         new DetailsVerify().execute();
 
 
 
         progessdialog(getActivity());
         //add frags
-        image=view.findViewById(R.id.imageView2);
-        textView=view.findViewById(R.id.user_name);
-        textView1=view.findViewById(R.id.user_mail);
-        textView2=view.findViewById(R.id.vid);
-        textView3=view.findViewById(R.id.user_phone);
+
         return view;
 
     }
@@ -182,7 +183,7 @@ public class Dashboard extends Fragment {
             String farer=user.getDatas().getFarer();
             String s;
             //Toast.makeText(getContext(), vid + email, Toast.LENGTH_LONG).show();
-            textView.setText(fname+" "+lname);
+            textView12.setText(fname+" "+lname);
             textView1.setText(email);
             if(vid.length()==3){
                 s="V190"+vid;

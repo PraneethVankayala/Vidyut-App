@@ -56,7 +56,7 @@ import static android.graphics.Color.WHITE;
 public class QrCode extends Fragment {
     private String auth;
     private ImageView imageView;
-    private TextView textView;
+    private TextView textView11;
     private int cacheSize = (int)(0.3 * 1024 * 1024);
     private View view;
     private String str;
@@ -75,15 +75,10 @@ public class QrCode extends Fragment {
         if(ab!=null) {
             ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
             ab.setCustomView(textView);
-            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#ffffff"));
-            ab.setBackgroundDrawable(colorDrawable);
             ab.setDisplayShowTitleEnabled(false);
-            final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-            upArrow.setColorFilter(getResources().getColor(R.color.lightBlack), PorterDuff.Mode.SRC_ATOP);
-            ab.setHomeAsUpIndicator(upArrow);
         }
         imageView=view.findViewById(R.id.qrcode);
-        textView=view.findViewById(R.id.vidqr);
+        textView11=view.findViewById(R.id.vidqr);
         progessdialog(getActivity());
         new QRclass().execute(auth);
 
@@ -151,19 +146,19 @@ public class QrCode extends Fragment {
              try{
                  String vid = user.getDatas().getVid();
                  if(vid.length()==3){
-                     textView.setText("V190"+vid);
+                     textView11.setText("V190"+vid);
                      str="V190"+vid;
                  }
                  else if(vid.length()==2){
-                     textView.setText("V1900"+vid);
+                     textView11.setText("V1900"+vid);
                      str="V1900"+vid;
                  }
                  else if(vid.length()==1){
-                     textView.setText("V19000"+vid);
+                     textView11.setText("V19000"+vid);
                      str="V19000"+vid;
                  }
                  else{
-                     textView.setText("V19"+vid);
+                     textView11.setText("V19"+vid);
                      str="V19"+vid;
                  }
                  String farer=user.getDatas().getFarer();
@@ -171,7 +166,7 @@ public class QrCode extends Fragment {
                      progress.dismiss();
                  }
 
-                 Toast.makeText(getContext(),user.getDatas().getVid(),Toast.LENGTH_SHORT).show();
+                 //Toast.makeText(getContext(),user.getDatas().getVid(),Toast.LENGTH_SHORT).show();
                  Bitmap bitmap;
                  if(farer.isEmpty()){
 
