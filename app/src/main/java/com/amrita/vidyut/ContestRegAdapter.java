@@ -48,7 +48,7 @@ public class ContestRegAdapter extends RecyclerView.Adapter<ChildViewHolder> {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 b.putInt("id",id);
-                b.putInt("flag",1);
+                b.putInt("flag",3);
                 Intent intent = new Intent(viewGroup.getContext(),Display.class);
                 intent.putExtras(b);
                 startActivity(viewGroup.getContext(),intent,null);

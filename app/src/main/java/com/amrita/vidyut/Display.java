@@ -79,12 +79,19 @@ public class Display extends AppCompatActivity {
             Workshops workshops= (Workshops) intent.getSerializableExtra("list");
             Display(workshops);
             back="Workshops";
-        }else {
+        }else if(flag == 1) {
             Contests contests= (Contests) intent.getSerializableExtra("list");
-           Display2(contests);
+            Display2(contests);
             back="Contests";
         }
+        else if(flag == 2){
+            new WorkshopDetails().execute(id);
+        }
+        else if(flag == 3){
+            new ContestDetails().execute(id);
+        }
     }
+
 
     private void Display(Workshops workshop){
         progressBar.setVisibility(View.GONE);
@@ -205,4 +212,49 @@ public class Display extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public class WorkshopDetails extends AsyncTask<Integer,Void,Workshops>{
+
+        @Override
+        protected Workshops doInBackground(Integer... integers) {
+            Call<Workshops> call=apiManager.getWorkshopDetails(integers[0]);
+            Workshops workshops = null;
+            try {
+                workshops=call.execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return workshops;
+        }
+
+        @Override
+        protected void onPostExecute(Workshops workshops) {
+            Display(workshops);
+            super.onPostExecute(workshops);
+        }
+    }
+
+    public class ContestDetails extends AsyncTask<Integer,Void,Contests>{
+
+        @Override
+        protected Contests doInBackground(Integer... integers) {
+            Call<Contests> call=apiManager.getContestDetails(integers[0]);
+            Contests workshops = null;
+            try {
+                workshops=call.execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return workshops;
+        }
+
+        @Override
+        protected void onPostExecute(Contests workshops) {
+            Display2(workshops);
+            super.onPostExecute(workshops);
+        }
+    }
+
 }
+
