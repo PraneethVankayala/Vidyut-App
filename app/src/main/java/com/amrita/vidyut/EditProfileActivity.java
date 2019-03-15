@@ -46,7 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
         token = b.getString("token");
         Log.i("This is token",token);
         TextView textView=new TextView(getApplicationContext());
-        Typeface typeface = ResourcesCompat.getFont(this, R.font.frontage_bold);
+        typeface = ResourcesCompat.getFont(this, R.font.frontage_bold);
         textView.setTypeface(typeface);
         textView.setText("VIDYUT");
         textView.setTextColor(getResources().getColor(R.color.colorPrimary));

@@ -18,7 +18,7 @@ import retrofit2.http.Query;
 
 public interface Api {
 
-    String BASE_URL="https://devhub.amblygon.org";
+    String BASE_URL="https://hub.amblygon.org";
 
     @POST("farer/auth/user")
     Call<ResponseAuth>  createId(@Body AuthToken authToken);
